@@ -337,8 +337,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="#apps">Apps</a></li>
-      <li><a href="#vision">About</a></li>
-      <li><a href="mailto:support@elolabs.app">Contact</a></li>
+      <li><a id="nav-contact" href="#">Contact</a></li>
     </ul>
   </nav>
 
@@ -466,12 +465,18 @@
   <footer>
     <div class="footer-left">© 2026 EloLabs. All rights reserved.</div>
     <ul class="footer-links">
-      <li><a href="/clearbudget">ClearBudget</a></li>
-      <li><a href="/clearbudget/privacy">Privacy Policy</a></li>
-      <li><a href="/clearbudget/support">Support</a></li>
-      <li><a href="mailto:support@elolabs.app">Contact</a></li>
+      <li><a id="footer-contact" href="#">Contact</a></li>
     </ul>
   </footer>
+
+  <script>
+    const u = 'support'; const d = 'elolabs.app';
+    const email = 'mailto:' + u + '@' + d;
+    const nc = document.getElementById('nav-contact');
+    const fc = document.getElementById('footer-contact');
+    if (nc) nc.href = email;
+    if (fc) { fc.href = email; fc.textContent = u + '@' + d; }
+  </script>
 
 </body>
 </html>
