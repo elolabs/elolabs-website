@@ -236,7 +236,7 @@
       </div>
 
       <p class="direct-email">
-        Or email us directly at <a href="/cdn-cgi/l/email-protection#3f4c4a4f4f504d4b7f5a5350535e5d4c115e4f4f"><span class="__cf_email__" data-cfemail="93e0e6e3e3fce1e7d3f6fffcfff2f1e0bdf2e3e3">[email&#160;protected]</span></a>
+        Or email us directly at <a id="support-email-link" href="#">support@elolabs.app</a>
       </p>
     </div>
   </div>
@@ -247,6 +247,11 @@
   </footer>
 
   <script>
+    const u = 'support';
+    const d = 'elolabs.app';
+    const el = document.getElementById('support-email-link');
+    if (el) { el.href = 'mailto:' + u + '@' + d; el.textContent = u + '@' + d; }
+  
     const form = document.getElementById('support-form');
     const successMsg = document.getElementById('success-msg');
     form.addEventListener('submit', async (e) => {
