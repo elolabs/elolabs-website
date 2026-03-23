@@ -202,14 +202,11 @@
       <div class="form-title">Send us a message</div>
       <p class="form-sub">Can't find your answer above? We're here to help.</p>
 
-      <!--
-        Formspree ile mail göndermek için:
-        1. https://formspree.io adresine git
-        2. Ücretsiz hesap oluştur
-        3. New Form → endpoint al (örn. https://formspree.io/f/xyzabc)
-        4. Aşağıdaki action="YOUR_FORMSPREE_ENDPOINT" kısmını güncelle
-      -->
-      <form id="support-form" action="YOUR_FORMSPREE_ENDPOINT" method="POST">
+      <form id="support-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="d0b15246-1cdf-4ab9-af90-dd48ee421998" />
+        <input type="hidden" name="subject" value="ClearBudget User Feedback" />
+        <input type="hidden" name="from_name" value="ClearBudget Support Form" />
+        <input type="hidden" name="redirect" value="false" />
         <div class="field">
           <label for="name">Your Name</label>
           <input type="text" id="name" name="name" placeholder="John Doe" required />
@@ -239,7 +236,7 @@
       </div>
 
       <p class="direct-email">
-        Or email us directly at <a href="mailto:support@elolabs.app">support@elolabs.app</a>
+        Or email us directly at <a href="/cdn-cgi/l/email-protection#3f4c4a4f4f504d4b7f5a5350535e5d4c115e4f4f"><span class="__cf_email__" data-cfemail="93e0e6e3e3fce1e7d3f6fffcfff2f1e0bdf2e3e3">[email&#160;protected]</span></a>
       </p>
     </div>
   </div>
@@ -254,18 +251,27 @@
     const successMsg = document.getElementById('success-msg');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const submitBtn = form.querySelector('.submit-btn');
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
       const data = new FormData(form);
       try {
-        const res = await fetch(form.action, {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
+          body: data
         });
-        if (res.ok) {
+        const json = await res.json();
+        if (json.success) {
           form.style.display = 'none';
           successMsg.style.display = 'block';
+        } else {
+          submitBtn.textContent = 'Send Message →';
+          submitBtn.disabled = false;
+          alert('Something went wrong. Please email us directly at support@elolabs.app');
         }
       } catch {
+        submitBtn.textContent = 'Send Message →';
+        submitBtn.disabled = false;
         alert('Something went wrong. Please email us directly at support@elolabs.app');
       }
     });
