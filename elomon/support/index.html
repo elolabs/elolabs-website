@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — EloMon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #7B2FBE; --purple2: #5C12A0; --purple3: #f0e8ff;
+      --ink: #0D1117; --ink2: #3A4251; --muted: #7A8394;
+      --border: #e0d0ff; --bg: #f8f4ff; --white: #FFFFFF;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 64px; background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-back { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-back:hover { color: var(--purple); }
+    .nav-brand { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: var(--ink); }
+    .page { max-width: 640px; margin: 0 auto; padding: 64px 5vw 100px; }
+    .doc-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; }
+    h1 { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -1px; color: var(--ink); margin-bottom: 12px; }
+    .sub { font-size: 16px; color: var(--ink2); line-height: 1.6; margin-bottom: 48px; }
+    .faq { margin-bottom: 56px; }
+    .faq-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 16px; }
+    details { border: 1px solid var(--border); border-radius: 14px; background: var(--white); margin-bottom: 10px; overflow: hidden; }
+    summary { padding: 18px 20px; font-size: 15px; font-weight: 500; color: var(--ink); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; font-size: 20px; color: var(--purple); font-weight: 300; }
+    details[open] summary::after { content: '−'; }
+    details p { padding: 0 20px 18px; font-size: 14px; line-height: 1.7; color: var(--ink2); }
+    .form-card { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 40px 36px; }
+    .form-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .form-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+    .field { margin-bottom: 20px; }
+    label { display: block; font-size: 13px; font-weight: 600; color: var(--ink2); margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%; border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 14px; font-size: 15px; font-family: 'DM Sans', sans-serif;
+      color: var(--ink); background: var(--bg);
+      transition: border-color .2s, box-shadow .2s; outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(123,47,190,.12);
+      background: var(--white);
+    }
+    textarea { resize: vertical; min-height: 140px; }
+    .submit-btn {
+      width: 100%; background: var(--purple); color: #fff;
+      border: none; border-radius: 12px; padding: 14px 28px;
+      font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; transition: all .2s;
+      box-shadow: 0 4px 16px rgba(123,47,190,.3);
+    }
+    .submit-btn:hover { background: var(--purple2); transform: translateY(-1px); }
+    .submit-btn:active { transform: translateY(0); }
+    .success-msg {
+      display: none; background: #d1fae5; border: 1px solid #6ee7b7;
+      border-radius: 14px; padding: 20px 24px;
+      font-size: 15px; color: #065f46; font-weight: 500; margin-top: 20px;
+    }
+    .direct-email { text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted); }
+    .direct-email a { color: var(--purple); }
+    footer {
+      padding: 32px 5vw; border-top: 1px solid var(--border); background: var(--white);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    footer span { font-size: 13px; color: var(--muted); }
+    footer a { font-size: 13px; color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--purple); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/elomon" class="nav-back">← EloMon</a>
+    <span class="nav-brand">Support</span>
+    <span></span>
+  </nav>
+
+  <div class="page">
+    <div class="doc-label">Help Center</div>
+    <h1>How can we help?</h1>
+    <p class="sub">Browse the FAQ below or send us a message. We typically respond within 1–2 business days.</p>
+
+    <!-- FAQ -->
+    <div class="faq">
+      <div class="faq-title">Frequently Asked Questions</div>
+
+      <details>
+        <summary>Is EloMon free?</summary>
+        <p>Yes. EloMon is free to download and the core experience is completely free — create your monster, customize it, and export wallpapers and stickers with no time limits. A Pro pack unlocks additional premium backgrounds and outfits.</p>
+      </details>
+
+      <details>
+        <summary>What does EloMon Pro include?</summary>
+        <p>EloMon Pro is available as a one-time purchase — no subscriptions. You can buy the Background Pack (10 exclusive HD scenes), the Outfit Pack (10 premium outfits), or the Full Pack which includes both plus an ad-free experience.</p>
+      </details>
+
+      <details>
+        <summary>How do I export my creation as a wallpaper?</summary>
+        <p>Tap the ⬇ (Save) button on the right side of the canvas, then select "Wallpaper". Your creation will be exported as a full-screen PNG and shared via your device's share sheet — save it to your gallery and set it as your wallpaper.</p>
+      </details>
+
+      <details>
+        <summary>How do I export a sticker?</summary>
+        <p>Tap the ⬇ (Save) button and select "Sticker". Your monster will be exported as a 512×512 PNG. You can then share it via WhatsApp, Telegram, or any messaging app that supports image sharing.</p>
+      </details>
+
+      <details>
+        <summary>How do I add text to my creation?</summary>
+        <p>Tap the 🪄 (Text) button on the right icon bar. Type your message, choose a color and size, then tap Add. You can drag the text anywhere on the canvas before exporting.</p>
+      </details>
+
+      <details>
+        <summary>How do I change the app language?</summary>
+        <p>Tap the ⚙️ (Settings) button in the top right, then tap "Language". EloMon supports 9 languages: English, Turkish, Japanese, Korean, German, French, Chinese, Portuguese, and Spanish.</p>
+      </details>
+
+      <details>
+        <summary>How do I restore my purchase?</summary>
+        <p>If you reinstalled the app or switched devices, your purchase should restore automatically when you open the app while signed in to the same Google Play account. If it doesn't, please contact us at support@elolabs.app.</p>
+      </details>
+
+      <details>
+        <summary>Is my data private?</summary>
+        <p>Yes. EloMon does not collect or store any personal data. Your creations stay on your device. The free version shows ads via Google AdMob — purchasing the Full Pack removes all ads.</p>
+      </details>
+    </div>
+
+    <!-- CONTACT FORM -->
+    <div class="form-card">
+      <div class="form-title">Send us a message</div>
+      <p class="form-sub">Can't find your answer above? We're here to help.</p>
+
+      <form id="support-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="d0b15246-1cdf-4ab9-af90-dd48ee421998" />
+        <input type="hidden" name="subject" value="EloMon User Support" />
+        <input type="hidden" name="from_name" value="EloMon Support Form" />
+        <input type="hidden" name="redirect" value="false" />
+        <div class="field">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+        </div>
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic">
+            <option value="bug">Bug Report</option>
+            <option value="purchase">Purchase / Pro Pack</option>
+            <option value="feature">Feature Request</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Describe your issue or question..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message →</button>
+      </form>
+
+      <div class="success-msg" id="success-msg">
+        ✅ Message sent! We'll get back to you within 1–2 business days.
+      </div>
+
+      <p class="direct-email">
+        Or email us directly at <a id="support-email-link" href="#">support@elolabs.app</a>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 EloLabs</span>
+    <a href="/elomon/privacy">Privacy Policy</a>
+  </footer>
+
+  <script>
+    const u = 'support', d = 'elolabs.app';
+    const el = document.getElementById('support-email-link');
+    if (el) { el.href = 'mailto:' + u + '@' + d; el.textContent = u + '@' + d; }
+
+    const form = document.getElementById('support-form');
+    const successMsg = document.getElementById('success-msg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.submit-btn');
+      btn.textContent = 'Sending...'; btn.disabled = true;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+        const json = await res.json();
+        if (json.success) { form.style.display = 'none'; successMsg.style.display = 'block'; }
+        else { btn.textContent = 'Send Message →'; btn.disabled = false; alert('Something went wrong. Please email us at support@elolabs.app'); }
+      } catch { btn.textContent = 'Send Message →'; btn.disabled = false; alert('Something went wrong. Please email us at support@elolabs.app'); }
+    });
+  </script>
+
+</body>
+</html>
