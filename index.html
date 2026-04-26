@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EloLabs — Apps for a Better Life</title>
+  <meta name="description" content="EloLabs builds mobile apps that simplify daily life — finance, health, time, and beyond." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0D1117; --ink2: #3A4251; --muted: #7A8394;
+      --border: #E8ECF2; --bg: #F7F9FC; --white: #FFFFFF;
+      --blue: #1A6FD4; --blue2: #0F52A8; --orange: #F5821F; --accent: #EAF2FF;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 68px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-mark { width: 36px; height: 36px; background: linear-gradient(135deg, #1A6FD4, #0F52A8); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: #fff; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; color: var(--ink); }
+    .nav-logo-text span { color: var(--orange); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--ink2); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 5vw 80px; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, #dbeafe 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 90% 80%, #fef3c7 0%, transparent 50%); }
+    .hero-grid { position: absolute; inset: 0; z-index: 0; opacity: 0.04; background-image: linear-gradient(var(--ink) 1px, transparent 1px), linear-gradient(90deg, var(--ink) 1px, transparent 1px); background-size: 40px 40px; }
+    .hero-content { position: relative; z-index: 1; text-align: center; max-width: 760px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); border: 1px solid #bfdbfe; border-radius: 100px; padding: 6px 16px; font-size: 13px; font-weight: 500; color: var(--blue2); margin-bottom: 28px; }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+    h1 { font-family: 'Syne', sans-serif; font-size: clamp(40px, 6vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -2px; color: var(--ink); margin-bottom: 24px; }
+    h1 em { font-style: italic; color: var(--blue); }
+    .hero-sub { font-size: 17px; color: var(--ink2); line-height: 1.7; max-width: 540px; margin: 0 auto 40px; }
+    .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--blue); color: #fff; padding: 14px 28px; border-radius: 12px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all .2s; box-shadow: 0 4px 20px rgba(26,111,212,.3); }
+    .btn-primary:hover { background: var(--blue2); transform: translateY(-2px); }
+    .btn-secondary { display: inline-flex; align-items: center; padding: 14px 28px; border-radius: 12px; font-size: 15px; font-weight: 500; color: var(--ink2); text-decoration: none; border: 1px solid var(--border); transition: all .2s; }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+    .pillars { padding: 80px 5vw; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -1px; color: var(--ink); margin-bottom: 48px; }
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .pillar-card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; }
+    .pillar-icon { font-size: 28px; display: block; margin-bottom: 14px; }
+    .pillar-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+    .pillar-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .apps { padding: 80px 5vw; background: var(--bg); }
+    .apps-inner { max-width: 1100px; margin: 0 auto; }
+    .apps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 0; }
+    .app-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px; transition: box-shadow .2s, transform .2s; }
+    .app-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); transform: translateY(-2px); }
+    .app-card-header { display: flex; align-items: center; gap: 14px; }
+    .app-icon { width: 52px; height: 52px; border-radius: 14px; overflow: hidden; flex-shrink: 0; }
+    .app-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .app-name { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: var(--ink); }
+    .app-category { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .app-desc { font-size: 14px; color: var(--ink2); line-height: 1.65; flex: 1; }
+    .app-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 100px; background: var(--bg); color: var(--ink2); border: 1px solid var(--border); }
+    .tag-purple { background: #ede9fe; color: #5B21B6; border-color: #c4b5fd; }
+    .tag-gold { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+    .app-link { font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; }
+    .app-link.blue { color: var(--blue); }
+    .app-link.purple { color: #7C3AED; }
+    .app-link.gold { color: #92400e; }
+    .new-badge { font-size: 10px; font-weight: 700; background: #7C3AED; color: #fff; padding: 2px 7px; border-radius: 100px; vertical-align: middle; margin-left: 6px; }
+    .new-badge-gold { font-size: 10px; font-weight: 700; background: #C9A84C; color: #0A1F1C; padding: 2px 7px; border-radius: 100px; vertical-align: middle; margin-left: 6px; }
+    .vision { padding: 100px 5vw; position: relative; overflow: hidden; }
+    .vision-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0D1117 0%, #1a2535 100%); }
+    .vision-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; text-align: center; }
+    .vision-content .section-label { color: #60a5fa; }
+    .vision-content .section-title { color: #fff; margin-bottom: 32px; }
+    .vision-text { font-size: 16px; color: #94a3b8; line-height: 1.8; margin-bottom: 20px; }
+    .vision-text strong { color: #e2e8f0; }
+    footer { padding: 32px 5vw; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    footer span, footer a { font-size: 13px; color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--blue); }
+    @media (max-width: 640px) { .nav-links { display: none; } footer { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-mark">E</div>
+      <span class="nav-logo-text">Elo<span>Labs</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#apps">Apps</a></li>
+      <li><a id="nav-contact" href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><div class="hero-badge-dot"></div>Building apps that matter</div>
+      <h1>Life is complex.<br /><em>Apps shouldn't be.</em></h1>
+      <p class="hero-sub">We design and build mobile applications that simplify the everyday — finance, time, health, and everything in between.</p>
+      <div class="hero-cta">
+        <a href="#apps" class="btn-primary">Explore Our Apps →</a>
+        <a href="#vision" class="btn-secondary">Our Mission</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars">
+    <div class="section-label">What We Build</div>
+    <div class="section-title">Tools for every dimension of life</div>
+    <div class="pillars-grid">
+      <div class="pillar-card"><span class="pillar-icon">💰</span><div class="pillar-title">Finance</div><p class="pillar-desc">Budget tracking, expense management, subscription radar, and financial clarity.</p></div>
+      <div class="pillar-card"><span class="pillar-icon">⏱️</span><div class="pillar-title">Time</div><p class="pillar-desc">Productivity tools, habit trackers, and smart scheduling for your day.</p></div>
+      <div class="pillar-card"><span class="pillar-icon">🧠</span><div class="pillar-title">Mind & Body</div><p class="pillar-desc">Mental wellness, fitness tracking, and tools for a healthier you.</p></div>
+      <div class="pillar-card"><span class="pillar-icon">🌍</span><div class="pillar-title">Everyday Life</div><p class="pillar-desc">Practical apps for travel, shopping, home, and daily decisions.</p></div>
+    </div>
+  </section>
+
+  <section class="apps" id="apps">
+    <div class="apps-inner">
+      <div class="section-label">Our Apps</div>
+      <div class="section-title">Simple tools. Real impact.</div>
+      <div class="apps-grid">
+
+        <div class="app-card cb">
+          <div class="app-card-header">
+            <div class="app-icon" style="background:#fff;"><img src="/clearbudget/screens/icon.png" alt="ClearBudget" /></div>
+            <div><div class="app-name">ClearBudget</div><div class="app-category">Finance · Free</div></div>
+          </div>
+          <p class="app-desc">A clean, intuitive budget tracker with donut charts, recurring payments, savings goals, asset tracking, and support for 10 languages. Free forever — no paywalls on the essentials.</p>
+          <div class="app-tags"><span class="tag">Budget Tracking</span><span class="tag">Savings Goals</span><span class="tag">10 Languages</span><span class="tag">Android</span></div>
+          <a href="/clearbudget" class="app-link blue">Learn more →</a>
+        </div>
+
+        <div class="app-card sr">
+          <div class="app-card-header">
+            <div class="app-icon" style="background:#1e1b4b;"><img src="/subradar/screens/icon.png" alt="SubRadar" /></div>
+            <div><div class="app-name">SubRadar</div><div class="app-category">Finance · Free + Pro</div></div>
+          </div>
+          <p class="app-desc">Track all your subscriptions in one place. Know exactly what you're paying, when it's due, and how much it adds up to — with smart reports, multi-currency support, and payment reminders.</p>
+          <div class="app-tags"><span class="tag tag-purple">Subscription Tracking</span><span class="tag tag-purple">Payment Reminders</span><span class="tag tag-purple">11 Languages</span><span class="tag tag-purple">Android</span></div>
+          <a href="/subradar" class="app-link purple">Learn more →</a>
+        </div>
+
+        <div class="app-card fc">
+          <div class="app-card-header">
+            <div class="app-icon" style="background:#0A1F1C;"><img src="/floatcard/screens/icon.png" alt="FloatCard" /></div>
+            <div><div class="app-name">FloatCard <span class="new-badge-gold">NEW</span></div><div class="app-category">Finance · Free + Pro</div></div>
+          </div>
+          <p class="app-desc">Earn interest while you spend. FloatCard helps you time your credit card purchases to maximize the float window — keeping your money in a money market fund for as long as possible.</p>
+          <div class="app-tags"><span class="tag tag-gold">Credit Card Float</span><span class="tag tag-gold">Interest Earnings</span><span class="tag tag-gold">4 Languages</span><span class="tag tag-gold">Android</span></div>
+          <a href="/floatcard" class="app-link gold">Learn more →</a>
+        </div>
+
+        <div class="app-card em">
+          <div class="app-card-header">
+            <div class="app-icon" style="background:linear-gradient(135deg,#7B2FBE,#5C12A0);"><img src="/elomon/screens/icon.png" alt="EloMon" /></div>
+            <div><div class="app-name">EloMon</div><div class="app-category">Creativity · Free</div></div>
+          </div>
+          <p class="app-desc">Create your own adorable plush monster character. Customize outfits, faces, ears, and HD backgrounds. Export as a wallpaper or sticker and share with the world.</p>
+          <div class="app-tags"><span class="tag">Monster Creator</span><span class="tag">Cute Wallpapers</span><span class="tag">Sticker Maker</span><span class="tag">Android</span></div>
+          <a href="/elomon" class="app-link blue">Learn more →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="vision" id="vision">
+    <div class="vision-bg"></div>
+    <div class="vision-content">
+      <div class="section-label">Our Mission</div>
+      <div class="section-title">Technology that serves people, not the other way around.</div>
+      <p class="vision-text">At EloLabs, we believe the best app is the one you barely notice — because it just <strong>works</strong>. We obsess over simplicity, speed, and clarity so you can focus on what matters.</p>
+      <p class="vision-text">We build for the <strong>real world</strong>: apps that work offline, respect your privacy, and never hold your data hostage. Free tiers that are genuinely useful. Premium tiers that are worth it.</p>
+      <p class="vision-text">Every app we ship is a step toward a <strong>simpler, better daily life</strong> — for as many people as possible, in as many languages as possible.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© 2026 EloLabs. All rights reserved.</div>
+    <ul class="footer-links"><li><a id="footer-contact" href="#">Contact</a></li></ul>
+  </footer>
+
+  <script>
+    const u = 'support'; const d = 'elolabs.app';
+    const email = 'mailto:' + u + '@' + d;
+    const nc = document.getElementById('nav-contact');
+    const fc = document.getElementById('footer-contact');
+    if (nc) nc.href = email;
+    if (fc) { fc.href = email; fc.textContent = u + '@' + d; }
+  </script>
+</body>
+</html>
