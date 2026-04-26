@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FloatCard — Earn While You Spend</title>
+  <meta name="description" content="FloatCard helps you time your credit card purchases to keep your money in a money market fund for longer — earning interest on every purchase, automatically." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #0A1F1C; --green2: #0F2A26; --green3: #162E2A;
+      --gold: #C9A84C; --gold2: #E8C97A;
+      --ink: #0D1117; --ink2: #3A4251; --muted: #7A8394;
+      --border: #E8ECF2; --bg: #F7F9FC; --white: #FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; height: 64px; background: rgba(255,255,255,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-back { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-icon { width: 32px; height: 32px; border-radius: 9px; background: var(--green); overflow: hidden; }
+    .nav-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .nav-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: var(--ink); }
+    .nav-name span { color: var(--gold); }
+    .nav-dl { display: inline-flex; align-items: center; gap: 6px; background: var(--green); color: #fff; padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 500; text-decoration: none; transition: background .2s; }
+    .nav-dl:hover { background: var(--green2); }
+
+    /* HERO */
+    .hero { padding: 120px 5vw 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 768px) { .hero { grid-template-columns: 1fr; padding: 100px 5vw 60px; } .hero-visuals { display: none; } }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 100px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: #166534; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 24px; }
+    h1 { font-family: 'Syne', sans-serif; font-size: clamp(36px, 5vw, 60px); font-weight: 800; line-height: 1.08; letter-spacing: -1.5px; color: var(--ink); margin-bottom: 20px; }
+    h1 span { color: var(--gold); }
+    .hero-desc { font-size: 17px; line-height: 1.7; color: var(--ink2); margin-bottom: 36px; max-width: 480px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .btn-dl { display: inline-flex; align-items: center; gap: 10px; background: var(--green); color: #fff; padding: 14px 28px; border-radius: 12px; font-size: 15px; font-weight: 500; text-decoration: none; box-shadow: 0 4px 20px rgba(10,31,28,.3); transition: all .2s; }
+    .btn-dl:hover { background: var(--green2); transform: translateY(-2px); }
+    .btn-free { font-size: 13px; color: var(--muted); }
+    .btn-free strong { color: #059669; font-weight: 600; }
+    .hero-visuals { position: relative; display: flex; justify-content: center; align-items: center; }
+    .phones { display: flex; gap: 16px; align-items: flex-start; }
+    .phone { width: 200px; background: var(--green); border-radius: 32px; overflow: hidden; box-shadow: 0 24px 64px rgba(10,31,28,.25); border: 2px solid rgba(255,255,255,.1); flex-shrink: 0; }
+    .phone img { width: 100%; display: block; }
+    .phone-secondary { margin-top: 40px; width: 180px; opacity: 0.85; }
+
+    /* STATS */
+    .stats { background: var(--green); padding: 56px 5vw; }
+    .stats-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; text-align: center; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800; color: var(--gold); }
+    .stat-label { font-size: 14px; color: #6A8880; margin-top: 4px; }
+
+    /* HOW IT WORKS */
+    .how { padding: 100px 5vw; max-width: 900px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -1px; color: var(--ink); margin-bottom: 48px; }
+    .steps { display: flex; flex-direction: column; gap: 24px; }
+    .step { display: flex; gap: 24px; align-items: flex-start; background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+    .step-num { width: 44px; height: 44px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: var(--gold); flex-shrink: 0; }
+    .step-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .step-desc { font-size: 14px; color: var(--ink2); line-height: 1.65; }
+
+    /* FEATURES */
+    .features { padding: 100px 5vw; background: var(--bg); }
+    .features-inner { max-width: 1100px; margin: 0 auto; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .feature-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+    .feature-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+    .feature-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+    .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .pro-badge { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; background: var(--green); color: var(--gold); padding: 2px 8px; border-radius: 100px; margin-left: 6px; vertical-align: middle; }
+
+    /* SCREENSHOTS */
+    .screenshots { padding: 100px 5vw; max-width: 1100px; margin: 0 auto; text-align: center; }
+    .screenshots-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; justify-content: center; flex-wrap: wrap; }
+    .screenshot-item { flex-shrink: 0; }
+    .screenshot-frame { width: 160px; border-radius: 20px; overflow: hidden; background: var(--green); box-shadow: 0 8px 32px rgba(0,0,0,.12); cursor: pointer; transition: transform .2s, box-shadow .2s; }
+    .screenshot-frame:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.18); }
+    .screenshot-frame img { width: 100%; display: block; }
+    .screenshot-caption { font-size: 12px; color: var(--muted); margin-top: 10px; }
+
+    /* PRICING / FREE vs PRO */
+    .pricing { padding: 100px 5vw; background: var(--bg); }
+    .pricing-inner { max-width: 860px; margin: 0 auto; text-align: center; }
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 0; text-align: left; }
+    @media (max-width: 600px) { .pricing-grid { grid-template-columns: 1fr; } }
+    .plan-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; }
+    .plan-card.plan-pro { border-color: var(--gold); background: var(--green); }
+    .plan-name { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+    .plan-card.plan-pro .plan-name { color: var(--gold); }
+    .plan-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+    .plan-card.plan-pro .plan-sub { color: #6A8880; }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .plan-features li { font-size: 14px; color: var(--ink2); display: flex; align-items: flex-start; gap: 8px; }
+    .plan-card.plan-pro .plan-features li { color: #E8F0EE; }
+    .check { color: #059669; font-weight: 700; flex-shrink: 0; }
+    .plan-card.plan-pro .check { color: var(--gold); }
+
+    /* CTA */
+    .cta-section { background: var(--green); padding: 100px 5vw; text-align: center; }
+    .cta-section h2 { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: #E8F0EE; letter-spacing: -1px; margin-bottom: 16px; }
+    .cta-section p { font-size: 16px; color: #6A8880; margin-bottom: 40px; }
+    .btn-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--green); padding: 16px 36px; border-radius: 12px; font-size: 16px; font-weight: 700; text-decoration: none; transition: all .2s; }
+    .btn-cta:hover { background: var(--gold2); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer { padding: 32px 5vw; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    footer span, footer a { font-size: 13px; color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    @media (max-width: 640px) { footer { flex-direction: column; text-align: center; } }
+
+    /* LIGHTBOX */
+    .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 1000; align-items: center; justify-content: center; }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-inner { position: relative; max-width: 360px; width: 90%; }
+    .lightbox-inner img { width: 100%; border-radius: 24px; display: block; }
+    .lightbox-close { position: absolute; top: -40px; right: 0; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+    .lightbox-caption { text-align: center; color: #aaa; font-size: 13px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-back">← EloLabs</a>
+    <div class="nav-brand">
+      <div class="nav-icon"><img src="/floatcard/screens/icon.png" alt="FloatCard" /></div>
+      <span class="nav-name">Float<span>Card</span></span>
+    </div>
+    <a href="https://play.google.com/store/apps/details?id=com.serkan.varnalier.FloatCard" class="nav-dl" target="_blank">Get App</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">✦ Android · Free to Download</div>
+      <h1>Spend smart.<br /><span>Earn while</span><br />you float.</h1>
+      <p class="hero-desc">FloatCard tells you exactly which credit card to use each day — so your money stays in a money market fund for as long as possible, earning interest before your payment is due.</p>
+      <div class="hero-actions">
+        <a href="https://play.google.com/store/apps/details?id=com.serkan.varnalier.FloatCard" class="btn-dl" target="_blank">↓ Download on Android</a>
+        <span class="btn-free"><strong>Free.</strong> Pro available.</span>
+      </div>
+    </div>
+    <div class="hero-visuals">
+      <div class="phones">
+        <div class="phone"><img src="/floatcard/screens/1.png" alt="FloatCard Dashboard" /></div>
+        <div class="phone phone-secondary"><img src="/floatcard/screens/2.png" alt="FloatCard Earnings" /></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stats-inner">
+      <div><div class="stat-num">30+</div><div class="stat-label">Days of float per month</div></div>
+      <div><div class="stat-num">4</div><div class="stat-label">Languages supported</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">Local — no cloud</div></div>
+      <div><div class="stat-num">10</div><div class="stat-label">Beautiful themes</div></div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how">
+    <div class="section-label">How It Works</div>
+    <div class="section-title">Three steps to earning more.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><div class="step-title">Use the right card at the right time</div><div class="step-desc">Right after a card's statement date, FloatCard tells you to use it. This gives you the longest possible time before payment is due.</div></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><div class="step-title">Keep your money in a money market fund</div><div class="step-desc">From your income date to the due date, your money earns daily interest in a PPF/money market fund instead of sitting idle.</div></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><div class="step-title">Pay the full statement on the due date</div><div class="step-desc">Pay the complete balance on the last day. FloatCard calculates your net interest earnings after tax — showing you exactly how much you made.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="features">
+    <div class="features-inner">
+      <div class="section-label">Features</div>
+      <div class="section-title">Everything you need to float.</div>
+      <div class="features-grid">
+        <div class="feature-card"><span class="feature-icon">💳</span><div class="feature-title">Daily Card Guidance</div><div class="feature-desc">See exactly which card to use today, with a live countdown to your next card switch.</div></div>
+        <div class="feature-card"><span class="feature-icon">📊</span><div class="feature-title">Earnings Tracker</div><div class="feature-desc">Monthly breakdown of gross and net earnings per card, with full tax calculation.</div></div>
+        <div class="feature-card"><span class="feature-icon">📱</span><div class="feature-title">Home Screen Widget <span class="pro-badge">PRO</span></div><div class="feature-desc">See today's card and days remaining without opening the app.</div></div>
+        <div class="feature-card"><span class="feature-icon">🔔</span><div class="feature-title">Smart Notifications <span class="pro-badge">PRO</span></div><div class="feature-desc">Get reminded on card switch days and payment due dates — with weekend-aware timing.</div></div>
+        <div class="feature-card"><span class="feature-icon">🎨</span><div class="feature-title">10 Themes <span class="pro-badge">PRO</span></div><div class="feature-desc">Customize FloatCard with 10 beautiful themes including Forest, Midnight, Glacier, and more.</div></div>
+        <div class="feature-card"><span class="feature-icon">🔒</span><div class="feature-title">100% Private</div><div class="feature-desc">All data stays on your device. No accounts, no sync, no servers. Works fully offline.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOTS -->
+  <div class="screenshots">
+    <div class="section-label">Screenshots</div>
+    <div class="section-title">See it in action</div>
+    <div class="screenshots-row">
+      <div class="screenshot-item">
+        <div class="screenshot-frame" onclick="openLightbox('/floatcard/screens/1.png','Dashboard')"><img src="/floatcard/screens/1.png" alt="Dashboard" /></div>
+        <div class="screenshot-caption">Dashboard</div>
+      </div>
+      <div class="screenshot-item">
+        <div class="screenshot-frame" onclick="openLightbox('/floatcard/screens/2.png','Earnings')"><img src="/floatcard/screens/2.png" alt="Earnings" /></div>
+        <div class="screenshot-caption">Earnings</div>
+      </div>
+      <div class="screenshot-item">
+        <div class="screenshot-frame" onclick="openLightbox('/floatcard/screens/3.png','Statement')"><img src="/floatcard/screens/3.png" alt="Statement" /></div>
+        <div class="screenshot-caption">Statement</div>
+      </div>
+      <div class="screenshot-item">
+        <div class="screenshot-frame" onclick="openLightbox('/floatcard/screens/4.png','Archive')"><img src="/floatcard/screens/4.png" alt="Archive" /></div>
+        <div class="screenshot-caption">Archive</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FREE vs PRO -->
+  <div class="pricing">
+    <div class="pricing-inner">
+      <div class="section-label">Pricing</div>
+      <div class="section-title">Start free. Upgrade when you're ready.</div>
+      <div class="pricing-grid">
+        <div class="plan-card">
+          <div class="plan-name">Free</div>
+          <div class="plan-sub">Always free · No credit card</div>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> Daily card guidance</li>
+            <li><span class="check">✓</span> Current month earnings</li>
+            <li><span class="check">✓</span> Current month archive</li>
+            <li><span class="check">✓</span> Statement entry (current month)</li>
+            <li><span class="check">✓</span> 3 free themes</li>
+            <li><span class="check">✓</span> 4 language support</li>
+            <li><span class="check">✓</span> Widget (first 30 days)</li>
+            <li><span class="check">✓</span> No ads. Ever.</li>
+          </ul>
+        </div>
+        <div class="plan-card plan-pro">
+          <div class="plan-name">Pro</div>
+          <div class="plan-sub">Yearly & Lifetime options available</div>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> Everything in Free</li>
+            <li><span class="check">✓</span> Home screen widget</li>
+            <li><span class="check">✓</span> Smart notifications</li>
+            <li><span class="check">✓</span> Unlimited earnings history</li>
+            <li><span class="check">✓</span> Past & future month entry</li>
+            <li><span class="check">✓</span> Year navigation</li>
+            <li><span class="check">✓</span> Data backup & restore</li>
+            <li><span class="check">✓</span> 10 premium themes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>The app that pays for itself in the first month.</h2>
+    <p>Free download. No account required. Works offline.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.serkan.varnalier.FloatCard" class="btn-cta" target="_blank">⬇ Download on Google Play</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>FloatCard by EloLabs</span>
+    <ul class="footer-links">
+      <li><a href="/">EloLabs</a></li>
+      <li><a href="/floatcard/privacy">Privacy Policy</a></li>
+      <li><a href="/floatcard/support">Support</a></li>
+    </ul>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightbox-img" src="" alt="" />
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <script>
+    function openLightbox(src, caption) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-caption').textContent = caption;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(e) {
+      if (e && e.target !== document.getElementById('lightbox')) return;
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
