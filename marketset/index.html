@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarketSet — Smart Shopping List & Budget Tracker</title>
+  <meta name="description" content="MarketSet is a smart shopping list app that tracks your budget as you shop. Dual-view mode, 150+ product catalog, spending statistics — in 28 languages." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #1B5E20; --green2: #154a19; --green3: #e8f5e9; --green4: #2e7d32;
+      --orange: #FF6B00; --orange2: #e55f00;
+      --ink: #0D1117; --ink2: #3A4251; --muted: #7A8394;
+      --border: #E8ECF2; --bg: #F7F9FC; --white: #FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 64px;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-back { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-back:hover { color: var(--green); }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-icon { width: 32px; height: 32px; border-radius: 8px; overflow: hidden; }
+    .nav-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .nav-brand-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: var(--ink); }
+    .nav-cta { background: var(--green); color: #fff; text-decoration: none; padding: 8px 18px; border-radius: 10px; font-size: 14px; font-weight: 500; transition: background .2s; }
+    .nav-cta:hover { background: var(--green2); }
+
+    /* HERO */
+    .hero {
+      padding: 120px 5vw 80px; position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #f0faf0 0%, #ffffff 50%, #fff8f0 100%);
+    }
+    .hero-bg-circle {
+      position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(27,94,32,0.06) 0%, transparent 70%);
+      top: -100px; right: -100px; pointer-events: none;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--green3); border: 1px solid #a5d6a7; border-radius: 100px; padding: 6px 16px; font-size: 13px; font-weight: 500; color: var(--green2); margin-bottom: 24px; }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+    h1 { font-family: 'Syne', sans-serif; font-size: clamp(36px, 5vw, 60px); font-weight: 800; line-height: 1.08; letter-spacing: -2px; color: var(--ink); margin-bottom: 20px; }
+    h1 span { color: var(--green); }
+    .hero-sub { font-size: 17px; color: var(--ink2); line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-green { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: #fff; padding: 14px 28px; border-radius: 12px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all .2s; box-shadow: 0 4px 20px rgba(27,94,32,.25); }
+    .btn-green:hover { background: var(--green2); transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; padding: 14px 28px; border-radius: 12px; font-size: 15px; font-weight: 500; color: var(--ink2); text-decoration: none; border: 1px solid var(--border); transition: all .2s; }
+    .btn-outline:hover { border-color: var(--green); color: var(--green); }
+    .hero-stats { display: flex; gap: 28px; margin-top: 40px; flex-wrap: wrap; }
+    .hero-stat { }
+    .hero-stat-num { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--green); }
+    .hero-stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* PHONE MOCKUPS */
+    .hero-screens { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: 12px; }
+    .phone-wrap { position: relative; }
+    .phone-main { width: 200px; }
+    .phone-side { width: 165px; margin-bottom: 20px; opacity: 0.85; }
+    .phone-img {
+      width: 100%; border-radius: 28px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.18), 0 4px 12px rgba(0,0,0,.08);
+      cursor: pointer; transition: transform .3s, box-shadow .3s;
+      display: block;
+    }
+    .phone-img:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 36px 80px rgba(0,0,0,.22); }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-height: 90vh; max-width: 400px; width: 100%; border-radius: 24px; box-shadow: 0 40px 100px rgba(0,0,0,.5); }
+    .lightbox-close { position: absolute; top: 20px; right: 24px; font-size: 32px; color: #fff; cursor: pointer; opacity: .7; transition: opacity .2s; line-height: 1; }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 36px; color: #fff; cursor: pointer; opacity: .6; transition: opacity .2s; user-select: none; padding: 10px; }
+    .lightbox-nav:hover { opacity: 1; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+
+    /* FEATURES */
+    .features { padding: 100px 5vw; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -1px; color: var(--ink); margin-bottom: 56px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .feature-card { background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 28px 24px; transition: border-color .2s, box-shadow .2s; }
+    .feature-card:hover { border-color: #a5d6a7; box-shadow: 0 4px 20px rgba(27,94,32,.08); }
+    .feature-icon { font-size: 32px; display: block; margin-bottom: 16px; }
+    .feature-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+    .feature-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* SCREENS GALLERY */
+    .gallery { padding: 80px 5vw; background: var(--bg); }
+    .gallery-inner { max-width: 1100px; margin: 0 auto; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; margin-top: 0; }
+    .gallery-item img {
+      width: 100%; border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+      cursor: pointer; transition: transform .25s, box-shadow .25s;
+      display: block;
+    }
+    .gallery-item img:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,.18); }
+
+    /* PRO */
+    .pro { padding: 100px 5vw; position: relative; overflow: hidden; }
+    .pro-bg { position: absolute; inset: 0; background: linear-gradient(135deg, var(--green2) 0%, var(--green) 60%, #2e7d32 100%); }
+    .pro-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .pro-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 12px; }
+    .pro-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; color: #fff; margin-bottom: 16px; }
+    .pro-sub { font-size: 16px; color: rgba(255,255,255,.75); line-height: 1.7; margin-bottom: 48px; max-width: 560px; }
+    .pro-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 48px; }
+    .pro-feature { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 18px 20px; display: flex; align-items: flex-start; gap: 12px; }
+    .pro-feature-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .pro-feature-text { font-size: 14px; color: rgba(255,255,255,.85); line-height: 1.5; }
+    .pro-feature-text strong { display: block; color: #fff; font-weight: 600; margin-bottom: 2px; }
+    .pro-plans { display: flex; gap: 16px; flex-wrap: wrap; align-items: stretch; margin-bottom: 28px; }
+    .plan-card { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); border-radius: 16px; padding: 24px; flex: 1; min-width: 180px; position: relative; }
+    .plan-card.popular { background: #fff; border-color: #fff; }
+    .plan-popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--orange); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 100px; white-space: nowrap; }
+    .plan-label { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.7); margin-bottom: 8px; }
+    .plan-card.popular .plan-label { color: var(--muted); }
+    .plan-price { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .plan-card.popular .plan-price { color: var(--green); }
+    .plan-billing { font-size: 12px; color: rgba(255,255,255,.5); }
+    .plan-card.popular .plan-billing { color: var(--muted); }
+    .btn-orange { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: #fff; padding: 14px 32px; border-radius: 12px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all .2s; box-shadow: 0 4px 20px rgba(255,107,0,.4); }
+    .btn-orange:hover { background: var(--orange2); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      padding: 32px 5vw; border-top: 1px solid var(--border); background: var(--white);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    footer span { font-size: 13px; color: var(--muted); }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    footer a { font-size: 13px; color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--green); }
+
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-screens { margin-top: 40px; }
+      .phone-side { display: none; }
+      .phone-main { width: 220px; }
+    }
+    @media (max-width: 480px) {
+      .hero-stats { gap: 20px; }
+      .pro-plans { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-back">← EloLabs</a>
+    <a href="/marketset" class="nav-brand">
+      <div class="nav-icon"><img src="/marketset/screens/icon.png" alt="MarketSet" /></div>
+      <span class="nav-brand-text">MarketSet</span>
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.elolabs.marketset" class="nav-cta" target="_blank">Get App</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-circle"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge"><div class="hero-badge-dot"></div>Now on Google Play</div>
+        <h1>Make your list.<br /><span>Shop smarter.</span></h1>
+        <p class="hero-sub">MarketSet is the shopping list that tracks your spending in real time. Add items from a catalog of 150+ products, see your cart total grow as you shop, and review your habits with beautiful statistics.</p>
+        <div class="hero-btns">
+          <a href="https://play.google.com/store/apps/details?id=com.elolabs.marketset" class="btn-green" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.31.17.66.24 1.02.2L16.76 12 4.2.04A1.83 1.83 0 003.18.24C2.46.65 2 1.4 2 2.28v19.44c0 .88.46 1.63 1.18 2.04z"/><path d="M20.09 10.32l-2.59-1.49-3.13 3.17 3.13 3.17 2.62-1.51c.75-.43 1.19-1.17 1.19-1.99 0-.82-.45-1.56-1.22-1.35z" opacity=".5"/><path d="M4.2.04L16.76 12 4.2 23.96c.07.01.14.04.21.04.37 0 .73-.1 1.05-.29l13.66-7.88-3.13-3.17L4.2.04z" opacity=".7"/></svg>
+            Google Play
+          </a>
+          <a href="#features" class="btn-outline">See Features</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="hero-stat-num">150+</div><div class="hero-stat-label">Products in catalog</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">28</div><div class="hero-stat-label">Languages</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Offline & private</div></div>
+        </div>
+      </div>
+      <div class="hero-screens">
+        <div class="phone-wrap">
+          <img src="/marketset/screens/screen2.png" alt="Shopping Mode" class="phone-img phone-side" onclick="openLightbox(1)" />
+        </div>
+        <div class="phone-wrap">
+          <img src="/marketset/screens/screen1.png" alt="Shopping Lists" class="phone-img phone-main" onclick="openLightbox(0)" />
+        </div>
+        <div class="phone-wrap">
+          <img src="/marketset/screens/screen4.png" alt="Statistics" class="phone-img phone-side" onclick="openLightbox(3)" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-label">Features</div>
+    <div class="section-title">Everything you need at the market</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🛒</span>
+        <div class="feature-title">Dual-View Shopping</div>
+        <p class="feature-desc">Your to-buy list and cart live side by side. Swipe items across as you shop — no switching screens.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💰</span>
+        <div class="feature-title">Real-Time Budget</div>
+        <p class="feature-desc">Add prices to items and watch your total build in real time. No more surprises at the checkout.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📚</span>
+        <div class="feature-title">150+ Product Catalog</div>
+        <p class="feature-desc">Quickly add items from a built-in catalog with categories like produce, dairy, meat, cleaning, and more.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <div class="feature-title">Spending Statistics</div>
+        <p class="feature-desc">Monthly spending charts, category breakdowns, and most-purchased products — all from your shopping history.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⭐</span>
+        <div class="feature-title">Favorites</div>
+        <p class="feature-desc">Star the products you buy every week and add them to any list in seconds.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔔</span>
+        <div class="feature-title">Shopping Reminders</div>
+        <p class="feature-desc">Set a reminder on any list. We'll notify you when it's time to go to the market.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🌍</span>
+        <div class="feature-title">28 Languages</div>
+        <p class="feature-desc">Full UI and product catalog localization in 28 languages — the app speaks your language.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <div class="feature-title">100% Offline & Private</div>
+        <p class="feature-desc">All your data stays on your device. No account, no sync, no tracking. Works without internet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="screens">
+    <div class="gallery-inner">
+      <div class="section-label">Screenshots</div>
+      <div class="section-title">See it in action</div>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="/marketset/screens/screen1.png" alt="Lists" onclick="openLightbox(0)" /></div>
+        <div class="gallery-item"><img src="/marketset/screens/screen2.png" alt="Shopping Mode" onclick="openLightbox(1)" /></div>
+        <div class="gallery-item"><img src="/marketset/screens/screen3.png" alt="Catalog" onclick="openLightbox(2)" /></div>
+        <div class="gallery-item"><img src="/marketset/screens/screen4.png" alt="Statistics" onclick="openLightbox(3)" /></div>
+        <div class="gallery-item"><img src="/marketset/screens/screen5.png" alt="Settings" onclick="openLightbox(4)" /></div>
+        <div class="gallery-item"><img src="/marketset/screens/screen6.png" alt="Pro" onclick="openLightbox(5)" /></div>
+        <div class="gallery-item"><img src="/marketset/screens/screen7.png" alt="Onboarding" onclick="openLightbox(6)" /></div>
+        <div class="gallery-item"><img src="/marketset/screens/screen8.png" alt="History" onclick="openLightbox(7)" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRO -->
+  <section class="pro" id="pro">
+    <div class="pro-bg"></div>
+    <div class="pro-inner">
+      <div class="pro-label">MarketSet Pro</div>
+      <div class="pro-title">Make your list, fly through the market.</div>
+      <p class="pro-sub">Unlock the full MarketSet experience with a one-time or annual Pro subscription.</p>
+      <div class="pro-features">
+        <div class="pro-feature"><span class="pro-feature-icon">📂</span><div class="pro-feature-text"><strong>Unlimited Catalog</strong>Add your own custom categories and products permanently.</div></div>
+        <div class="pro-feature"><span class="pro-feature-icon">⭐</span><div class="pro-feature-text"><strong>Unlimited Favorites</strong>Star as many products as you want for instant access.</div></div>
+        <div class="pro-feature"><span class="pro-feature-icon">📊</span><div class="pro-feature-text"><strong>Advanced Statistics</strong>Full yearly charts, category analysis, and savings badges.</div></div>
+        <div class="pro-feature"><span class="pro-feature-icon">🎨</span><div class="pro-feature-text"><strong>7 Extra Themes</strong>Sakura, Sunset, Nebula, and more — pick your vibe.</div></div>
+        <div class="pro-feature"><span class="pro-feature-icon">🔔</span><div class="pro-feature-text"><strong>Unlimited Reminders</strong>Set as many shopping reminders as you need.</div></div>
+        <div class="pro-feature"><span class="pro-feature-icon">☁️</span><div class="pro-feature-text"><strong>Backup & Restore</strong>Export your data as JSON and restore on any device.</div></div>
+      </div>
+      <div class="pro-plans">
+        <div class="plan-card popular">
+          <div class="plan-popular-badge">Most Popular</div>
+          <div class="plan-label">Yearly</div>
+          <div class="plan-billing">per year · 7-day free trial</div>
+        </div>
+        <div class="plan-card">
+          <div class="plan-label">Lifetime</div>
+          <div class="plan-billing">one-time payment</div>
+        </div>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.elolabs.marketset" class="btn-orange" target="_blank">Get MarketSet Free →</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 EloLabs · MarketSet</span>
+    <ul class="footer-links">
+      <li><a href="/marketset/privacy">Privacy Policy</a></li>
+      <li><a href="/marketset/support">Support</a></li>
+      <li><a href="/">EloLabs</a></li>
+    </ul>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+    <span class="lightbox-close" onclick="closeLightbox()">×</span>
+    <span class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</span>
+    <img id="lightbox-img" src="" alt="" />
+    <span class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">›</span>
+  </div>
+
+  <script>
+    const screens = [
+      '/marketset/screens/screen1.png',
+      '/marketset/screens/screen2.png',
+      '/marketset/screens/screen3.png',
+      '/marketset/screens/screen4.png',
+      '/marketset/screens/screen5.png',
+      '/marketset/screens/screen6.png',
+      '/marketset/screens/screen7.png',
+      '/marketset/screens/screen8.png',
+    ];
+    let currentScreen = 0;
+    function openLightbox(i) {
+      currentScreen = i;
+      document.getElementById('lightbox-img').src = screens[i];
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeLightboxOutside(e) { if (e.target.id === 'lightbox') closeLightbox(); }
+    function lightboxNav(dir) {
+      currentScreen = (currentScreen + dir + screens.length) % screens.length;
+      document.getElementById('lightbox-img').src = screens[currentScreen];
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lightboxNav(-1);
+      if (e.key === 'ArrowRight') lightboxNav(1);
+    });
+  </script>
+</body>
+</html>
