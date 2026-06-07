@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — ConvertRadar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cyan: #00E5FF; --cyan2: #00B8D4; --cyan3: #e0f7fa;
+      --ink: #0D1117; --ink2: #3A4251; --muted: #7A8394;
+      --border: #E8ECF2; --bg: #F7F9FC; --white: #FFFFFF; --green: #059669;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; height: 64px; background: var(--white); border-bottom: 1px solid var(--border); }
+    .nav-back { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-back:hover { color: var(--cyan2); }
+    .nav-brand { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: var(--ink); }
+    .page { max-width: 640px; margin: 0 auto; padding: 64px 5vw 100px; }
+    .doc-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan2); margin-bottom: 12px; }
+    h1 { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -1px; color: var(--ink); margin-bottom: 12px; }
+    .sub { font-size: 16px; color: var(--ink2); line-height: 1.6; margin-bottom: 48px; }
+    .faq { margin-bottom: 56px; }
+    .faq-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 16px; }
+    details { border: 1px solid var(--border); border-radius: 14px; background: var(--white); margin-bottom: 10px; overflow: hidden; }
+    summary { padding: 18px 20px; font-size: 15px; font-weight: 500; color: var(--ink); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; font-size: 20px; color: var(--cyan2); font-weight: 300; }
+    details[open] summary::after { content: '−'; }
+    details p { padding: 0 20px 18px; font-size: 14px; line-height: 1.7; color: var(--ink2); }
+    .form-card { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 40px 36px; }
+    .form-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .form-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+    .field { margin-bottom: 20px; }
+    label { display: block; font-size: 13px; font-weight: 600; color: var(--ink2); margin-bottom: 6px; }
+    input, select, textarea { width: 100%; border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--ink); background: var(--bg); transition: border-color .2s, box-shadow .2s; outline: none; }
+    input:focus, select:focus, textarea:focus { border-color: var(--cyan2); box-shadow: 0 0 0 3px rgba(0,229,255,.12); background: var(--white); }
+    textarea { resize: vertical; min-height: 140px; }
+    .submit-btn { width: 100%; background: #0F0F11; color: #fff; border: none; border-radius: 12px; padding: 14px 28px; font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .2s; }
+    .submit-btn:hover { background: #1e1e22; transform: translateY(-1px); }
+    .success-msg { display: none; background: #d1fae5; border: 1px solid #6ee7b7; border-radius: 14px; padding: 20px 24px; font-size: 15px; color: #065f46; font-weight: 500; margin-top: 20px; }
+    .direct-email { text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted); }
+    .direct-email a { color: var(--cyan2); }
+    footer { padding: 32px 5vw; border-top: 1px solid var(--border); background: var(--white); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    footer span { font-size: 13px; color: var(--muted); }
+    footer a { font-size: 13px; color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--cyan2); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/convertradar" class="nav-back">← ConvertRadar</a>
+    <span class="nav-brand">Support</span>
+    <span></span>
+  </nav>
+
+  <div class="page">
+    <div class="doc-label">Help Center</div>
+    <h1>How can we help?</h1>
+    <p class="sub">Browse the FAQ below or send us a message. We typically respond within 1–2 business days.</p>
+
+    <div class="faq">
+      <div class="faq-title">Frequently Asked Questions</div>
+
+      <details>
+        <summary>Is ConvertRadar free?</summary>
+        <p>Yes, completely free. No in-app purchases, no ads, no subscriptions. ConvertRadar is and always will be free.</p>
+      </details>
+
+      <details>
+        <summary>How often are exchange rates updated?</summary>
+        <p>Rates are fetched from the European Central Bank via the Frankfurter API once every 24 hours. You can also manually refresh rates anytime by tapping the refresh button on the main screen. Note: ECB rates are only updated on business days.</p>
+      </details>
+
+      <details>
+        <summary>Does it work offline?</summary>
+        <p>Yes. ConvertRadar caches the last fetched rates on your device. If you're offline, it uses those cached rates automatically. The date shown on screen indicates when the rates were last updated.</p>
+      </details>
+
+      <details>
+        <summary>How do I change the language?</summary>
+        <p>Go to Settings (⚙️ icon on the main screen) → Language, then select your preferred language. ConvertRadar supports 25 languages and automatically detects your device language on first launch.</p>
+      </details>
+
+      <details>
+        <summary>How do I change the theme?</summary>
+        <p>Go to Settings → Theme. You can choose from 5 themes: Dark Neon Blue, Dark Purple, Dark Green, Light Navy, and System Default.</p>
+      </details>
+
+      <details>
+        <summary>How does the built-in calculator work?</summary>
+        <p>You can use ×, ÷, +, and − operators directly on the keypad. For example, type 15 × 3 and tap = to get 45 — which is then converted to your target currency in real time.</p>
+      </details>
+
+      <details>
+        <summary>Is my data private?</summary>
+        <p>Completely. ConvertRadar stores all preferences locally on your device. We collect no personal data, use no analytics, and have no account system. See our Privacy Policy for full details.</p>
+      </details>
+
+      <details>
+        <summary>How do I swap currencies?</summary>
+        <p>Tap the ↑↓ button on the keyboard to swap the source and target currencies instantly.</p>
+      </details>
+    </div>
+
+    <div class="form-card">
+      <div class="form-title">Send us a message</div>
+      <p class="form-sub">Can't find your answer above? We're here to help.</p>
+      <form id="support-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="d0b15246-1cdf-4ab9-af90-dd48ee421998" />
+        <input type="hidden" name="subject" value="ConvertRadar User Support" />
+        <input type="hidden" name="from_name" value="ConvertRadar Support Form" />
+        <input type="hidden" name="redirect" value="false" />
+        <div class="field">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="John Doe" required />
+        </div>
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic">
+            <option value="bug">Bug Report</option>
+            <option value="feature">Feature Request</option>
+            <option value="rates">Exchange Rates Issue</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Describe your issue or question..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message →</button>
+      </form>
+      <div class="success-msg" id="success-msg">✅ Message sent! We'll get back to you within 1–2 business days.</div>
+      <p class="direct-email">Or email us directly at <a id="support-email-link" href="#">support@elolabs.app</a></p>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 EloLabs</span>
+    <a href="/convertradar/privacy">Privacy Policy</a>
+  </footer>
+
+  <script>
+    const u = 'support'; const d = 'elolabs.app';
+    const el = document.getElementById('support-email-link');
+    if (el) { el.href = 'mailto:' + u + '@' + d; el.textContent = u + '@' + d; }
+    const form = document.getElementById('support-form');
+    const successMsg = document.getElementById('success-msg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector('.submit-btn');
+      submitBtn.textContent = 'Sending...'; submitBtn.disabled = true;
+      const data = new FormData(form);
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+        const json = await res.json();
+        if (json.success) { form.style.display = 'none'; successMsg.style.display = 'block'; }
+        else { submitBtn.textContent = 'Send Message →'; submitBtn.disabled = false; alert('Something went wrong. Please email us directly.'); }
+      } catch { submitBtn.textContent = 'Send Message →'; submitBtn.disabled = false; alert('Something went wrong. Please email us directly.'); }
+    });
+  </script>
+</body>
+</html>

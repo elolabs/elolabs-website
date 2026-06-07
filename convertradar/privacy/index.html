@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — ConvertRadar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cyan: #00E5FF; --cyan2: #00B8D4; --cyan3: #e0f7fa;
+      --ink: #0D1117; --ink2: #3A4251; --muted: #7A8394;
+      --border: #E8ECF2; --bg: #F7F9FC; --white: #FFFFFF;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; height: 64px; border-bottom: 1px solid var(--border); }
+    .nav-back { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-back:hover { color: var(--cyan2); }
+    .nav-brand { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: var(--ink); }
+    .content { max-width: 720px; margin: 0 auto; padding: 64px 5vw 100px; }
+    .doc-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan2); margin-bottom: 12px; }
+    h1 { font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800; letter-spacing: -1px; color: var(--ink); margin-bottom: 8px; }
+    .updated { font-size: 13px; color: var(--muted); margin-bottom: 48px; }
+    .highlight-box { background: var(--cyan3); border: 1px solid #80deea; border-radius: 16px; padding: 24px 28px; margin-bottom: 48px; }
+    .highlight-box p { font-size: 15px; line-height: 1.7; color: var(--cyan2); font-weight: 500; }
+    h2 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); margin: 40px 0 12px; }
+    p { font-size: 15px; line-height: 1.75; color: var(--ink2); margin-bottom: 14px; }
+    ul { padding-left: 20px; margin-bottom: 14px; }
+    ul li { font-size: 15px; line-height: 1.75; color: var(--ink2); margin-bottom: 6px; }
+    a { color: var(--cyan2); }
+    footer { padding: 32px 5vw; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    footer span { font-size: 13px; color: var(--muted); }
+    footer a { font-size: 13px; color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--cyan2); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/convertradar" class="nav-back">← ConvertRadar</a>
+    <span class="nav-brand">Privacy Policy</span>
+    <span></span>
+  </nav>
+
+  <div class="content">
+    <div class="doc-label">Legal</div>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: June 2026</p>
+
+    <div class="highlight-box">
+      <p>ConvertRadar is designed with privacy at its core. <strong>We do not collect, store, or share your personal data.</strong> All your data stays on your device — always.</p>
+    </div>
+
+    <h2>1. Information We Do Not Collect</h2>
+    <p>ConvertRadar does not collect any personally identifiable information. Specifically, we do not collect:</p>
+    <ul>
+      <li>Your name, email address, or any account credentials</li>
+      <li>Your conversion history or usage patterns</li>
+      <li>Device identifiers or location data</li>
+      <li>Usage analytics or behavioral data</li>
+    </ul>
+
+    <h2>2. Data Storage</h2>
+    <p>All preferences you set in ConvertRadar — selected currencies, theme, language, recently used currencies — are stored exclusively on your device using local storage (AsyncStorage). No data is transmitted to our servers or any third-party servers.</p>
+
+    <h2>3. Exchange Rate Fetching</h2>
+    <p>ConvertRadar fetches daily exchange rates through a Cloudflare Worker proxy connected to the Frankfurter API (European Central Bank data). This request contains no personal information — only a request for currency rates. Rates are cached on your device for 24 hours to minimize network requests.</p>
+
+    <h2>4. Third-Party Services</h2>
+    <p>ConvertRadar uses the following third-party services:</p>
+    <ul>
+      <li><strong>Frankfurter API / European Central Bank</strong> — anonymous exchange rate data. No personal data is transmitted.</li>
+      <li><strong>Cloudflare</strong> — proxy for rate fetching. No personal data is logged.</li>
+      <li><strong>Google Play / Apple App Store</strong> — app distribution only.</li>
+    </ul>
+    <p>We do not use any advertising networks, analytics SDKs, or tracking tools.</p>
+
+    <h2>5. Children's Privacy</h2>
+    <p>ConvertRadar does not knowingly collect data from children under 13. Since we collect no personal data at all, the app is safe for users of all ages.</p>
+
+    <h2>6. Changes to This Policy</h2>
+    <p>If we update this privacy policy, the new version will be posted on this page with an updated date.</p>
+
+    <h2>7. Contact</h2>
+    <p>Questions about this privacy policy? Contact us at <a href="mailto:support@elolabs.app">support@elolabs.app</a>.</p>
+  </div>
+
+  <footer>
+    <span>© 2026 EloLabs</span>
+    <a href="/convertradar/support">Support</a>
+  </footer>
+</body>
+</html>
