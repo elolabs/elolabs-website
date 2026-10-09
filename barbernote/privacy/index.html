@@ -71,6 +71,8 @@
     <h1>Privacy Policy</h1>
     <p class="updated">Last updated: October 2026</p>
 
+    <p>This privacy policy applies to the BarberNote app. BarberNote is developed by EloLabs.</p>
+
     <div class="highlight-box">
       <p>
         <strong>Your agenda stays on your phone.</strong>
@@ -150,6 +152,7 @@
       Online booking gives you a personal link (for example <em>book.elolabs.app/b/your-shop</em>) where
       clients can book a free time without installing an app. To make this work, the following information
       is stored on our server, hosted by Cloudflare (Cloudflare Workers and Cloudflare D1 database).
+      Online booking data is stored on Cloudflare servers in Eastern Europe.
     </p>
 
     <h3>Your booking page</h3>
@@ -213,6 +216,10 @@
       <li>prevent abuse, for example by limiting the number of upcoming bookings per phone number at the same barber.</li>
     </ul>
     <p>
+      <strong>Who is responsible.</strong> Your booking information (your name and phone number) belongs to the
+      barber you book with. EloLabs stores it on the barber's behalf, only to provide the booking link.
+    </p>
+    <p>
       <strong>In your browser.</strong> The booking page saves your booking codes and the name, phone number
       and country you entered in your browser's local storage, on your own device, so you can see your bookings
       and don't have to type your details again. You can remove them by clearing this site's data in your
@@ -245,8 +252,15 @@
       </li>
     </ul>
     <p>
-      We store only the provider (Google or Apple) and that permanent account identifier. We use it to keep
-      your link connected to you and to restore it on a new phone. The app requests basic sign-in only, with
+      We store only the provider (Google or Apple) and that permanent account identifier. We use it for two
+      purposes only:
+    </p>
+    <ul>
+      <li>to keep your booking link yours, so that nobody else can take it;</li>
+      <li>to bring your link back when you change phones or reinstall the app.</li>
+    </ul>
+    <p>
+      The app requests basic sign-in only, with
       no access to your contacts, files, calendar or other Google or Apple data.
     </p>
 
@@ -271,9 +285,11 @@
         <a href="https://www.cloudflare.com/turnstile-privacy-policy/" target="_blank" rel="noopener">Cloudflare Turnstile Privacy Addendum</a>.
       </li>
       <li>
-        <strong>Rate limits.</strong> To limit bookings and searches per visitor, our server keeps short-lived
-        counters keyed by IP address. They are deleted within about two hours. Cloudflare also applies a
-        short-term rate limit to booking requests.
+        <strong>Rate limits.</strong> To limit bookings and searches per visitor, and the number of new booking
+        links created per day, our server keeps short-lived counters keyed by IP address (and, for new links,
+        by Google or Apple account identifier). Counters for bookings and searches are deleted within about two
+        hours; counters for new links are deleted within about one day. Cloudflare also applies a short-term
+        rate limit to booking requests.
       </li>
     </ul>
 
@@ -282,7 +298,7 @@
       <li><strong>Online bookings</strong> (including the client's name and phone number) are deleted completely 90 days after the appointment ends. We don't keep anonymised copies.</li>
       <li><strong>Booking notifications for the app</strong> (the list the app reads new bookings and cancellations from) are deleted 90 days after they were created.</li>
       <li><strong>Busy times</strong> from your agenda are deleted one day after they end.</li>
-      <li><strong>Rate limit counters</strong> (which contain IP addresses) are deleted within about two hours.</li>
+      <li><strong>Rate limit counters</strong> (which contain IP addresses) are deleted within about two hours. The IP address of a barber who creates a new booking link is kept for at most about one day.</li>
       <li>
         <strong>Your booking page, account identifier and subscription identifiers</strong> are kept for as long as
         your link exists, including after your subscription ends: your link stays reserved for you, so it works
@@ -295,13 +311,13 @@
       </li>
     </ul>
     <p>
-      Our hosting provider, Cloudflare, may keep short-term technical logs of requests (such as time, address
-      requested and IP address) for operation and security.
+      <strong>Server logs.</strong> Our server keeps technical logs of requests (such as time, address requested
+      and errors) for operation and troubleshooting. These logs are stored by Cloudflare and deleted after 3 days.
     </p>
 
     <h2 id="third-parties">9. Third-party services</h2>
     <ul>
-      <li><strong>Cloudflare</strong> — hosting of our server and booking pages (Cloudflare Workers), database (Cloudflare D1), bot protection (Turnstile) and rate limiting. Cloudflare may process data in several countries.</li>
+      <li><strong>Cloudflare</strong> — hosting of our server and booking pages (Cloudflare Workers), database (Cloudflare D1), bot protection (Turnstile) and rate limiting. Online booking data is stored on Cloudflare servers in Eastern Europe; requests are handled by Cloudflare's global network.</li>
       <li><strong>RevenueCat</strong> — subscription management, using an anonymous app user ID.</li>
       <li><strong>Apple App Store and Google Play</strong> — app distribution and payments.</li>
       <li><strong>Google Sign-In and Sign in with Apple</strong> — tying an online booking link to its owner (Online booking only).</li>
@@ -311,6 +327,7 @@
         video with YouTube's privacy-enhanced mode (youtube-nocookie.com). When you play it, Google may collect
         data under its own privacy policy.
       </li>
+      <li><strong>Web3Forms</strong> — if you use the contact form on our support page, the name, email address and message you enter pass through Web3Forms to reach us.</li>
       <li><strong>WhatsApp, your SMS app, Google Maps and Google Calendar</strong> — opened by you from the app or the booking page; we don't send them any data.</li>
     </ul>
     <p>
