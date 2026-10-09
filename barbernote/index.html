@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BarberNote — Your Barbershop, Organized</title>
-  <meta name="description" content="BarberNote is the daily companion for independent barbers — appointments, customers, cash, and reports. Fully offline, no account needed." />
+  <meta name="description" content="BarberNote is the daily companion for independent barbers — appointments, customers, cash, and reports that work offline, plus an optional online booking link for your clients." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
@@ -81,8 +81,22 @@
       .feature-list li { text-align: left; }
     }
 
-    .pricing { padding: 90px 5vw; background: var(--bg); }
-    .pricing-inner { max-width: 900px; margin: 0 auto; }
+    .online { padding: 90px 5vw; background: var(--bg); }
+    .online-inner { max-width: 1100px; margin: 0 auto; }
+    .new-tag { display: inline-block; background: var(--red); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; margin-left: 8px; vertical-align: middle; letter-spacing: .5px; }
+    .booking-mock { width: 100%; max-width: 270px; background: var(--white); border: 6px solid var(--dark); border-radius: 22px; box-shadow: 0 20px 50px rgba(0,0,0,.12); padding: 20px 16px; text-align: left; }
+    .booking-mock .bm-url { font-size: 11px; color: var(--muted); background: var(--bg); border-radius: 8px; padding: 6px 10px; margin-bottom: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .booking-mock .bm-shop { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 4px; }
+    .booking-mock .bm-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 14px 0 8px; }
+    .booking-mock .bm-service { display: flex; justify-content: space-between; font-size: 13px; border: 2px solid var(--blue); border-radius: 10px; padding: 9px 12px; }
+    .booking-mock .bm-service b { color: var(--blue); font-weight: 600; }
+    .booking-mock .bm-times { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .booking-mock .bm-times span { font-size: 13px; text-align: center; border: 1px solid var(--border); border-radius: 8px; padding: 7px 0; }
+    .booking-mock .bm-times span.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .booking-mock .bm-btn { margin-top: 16px; background: var(--blue); color: #fff; text-align: center; font-size: 14px; font-weight: 500; border-radius: 10px; padding: 11px; }
+
+    .pricing { padding: 90px 5vw; }
+    .pricing-inner { max-width: 1040px; margin: 0 auto; }
     .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
     .price-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; }
     .price-card.featured { border: 2px solid var(--red); position: relative; }
@@ -124,6 +138,7 @@
     </div>
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
+      <li><a href="#online-booking">Online booking</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="/barbernote/support">Support</a></li>
       <li><a href="#download" class="nav-cta">Download</a></li>
@@ -136,10 +151,10 @@
     <div class="hero-content">
       <div class="hero-badge"><div class="hero-badge-dot"></div>Made for independent barbers</div>
       <h1>Run your chair like<br /><em>a real business.</em></h1>
-      <p class="hero-sub">Appointments, customers, cash, and profit — all in one simple app. No internet required. No subscriptions forced on you. Just your shop, organized.</p>
+      <p class="hero-sub">Appointments, customers, cash, and profit — all in one simple app that works offline. Add your own online booking link when you want clients to book themselves. No subscriptions forced on you. Just your shop, organized.</p>
       <div class="hero-cta">
-        <a href="#" class="btn-primary" data-store="ios">Download on the App Store →</a>
-        <a href="#" class="btn-secondary" data-store="android">Get it on Google Play →</a>
+        <a href="https://apps.apple.com/app/id6789102901" class="btn-primary" data-store="ios">Download on the App Store →</a>
+        <a href="https://play.google.com/store/apps/details?id=com.elolabs.barbernote" class="btn-secondary" data-store="android">Get it on Google Play →</a>
         <a href="#features" class="btn-secondary">See how it works</a>
       </div>
     </div>
@@ -211,11 +226,45 @@
         <ul class="feature-list">
           <li>Daily, weekly, monthly, custom ranges</li>
           <li>One-tap backup — send it to yourself, restore anytime</li>
-          <li>Works fully offline, always</li>
+          <li>Agenda, customers, cash and reports work offline</li>
         </ul>
       </div>
       <div class="feature-shot">
         <img src="/barbernote/screens/screen-reports.png" alt="BarberNote reports screen" />
+      </div>
+    </div>
+  </section>
+
+  <section class="online" id="online-booking">
+    <div class="online-inner">
+      <div class="section-label">New · Online Booking</div>
+      <div class="section-title">Let clients book themselves.</div>
+
+      <div class="feature-row">
+        <div class="feature-text">
+          <span class="feature-icon">🔗</span>
+          <div class="feature-title">Your own booking link<span class="new-tag">NEW</span></div>
+          <p class="feature-desc">Get a personal link like book.elolabs.app/b/your-shop and share it on Instagram, WhatsApp or as a QR code in your shop. Clients open it in their browser, see your free times and book — no app to download, no account to create.</p>
+          <ul class="feature-list">
+            <li>Bookings land straight in your agenda, with a notification</li>
+            <li>Clients only see times that are free in your agenda</li>
+            <li>Choose which clients can book instantly and which need your approval</li>
+            <li>Clients can view or cancel their own booking from their link</li>
+            <li>Your page in 18 languages, in your theme color</li>
+            <li>No commission, no fee per booking</li>
+          </ul>
+        </div>
+        <div class="feature-shot">
+          <div class="booking-mock" aria-hidden="true">
+            <div class="bm-url">book.elolabs.app/b/your-shop</div>
+            <div class="bm-shop">Your Barbershop</div>
+            <div class="bm-label">Services</div>
+            <div class="bm-service"><span>Haircut · 30 min</span><b>Select</b></div>
+            <div class="bm-label">Available times</div>
+            <div class="bm-times"><span>10:00</span><span class="on">10:30</span><span>11:30</span><span>14:00</span><span>15:30</span><span>16:00</span></div>
+            <div class="bm-btn">Book</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -230,15 +279,14 @@
           <div class="price-desc">Full access, no time limit</div>
           <div class="price-amount">150 <span>appointments</span></div>
           <ul class="price-list">
-            <li>All features unlocked</li>
-            <li>All 5 themes and 15 languages</li>
+            <li>Agenda, customers, cash and reports unlocked</li>
+            <li>All 5 themes and 18 languages</li>
             <li>Backup and restore included</li>
             <li>No credit card required</li>
             <li>Your data stays on your device</li>
           </ul>
         </div>
-        <div class="price-card featured">
-          <div class="price-badge">MOST POPULAR</div>
+        <div class="price-card">
           <div class="price-name">BarberNote Pro</div>
           <div class="price-desc">For shops that never stop</div>
           <div class="price-amount">Unlimited <span>appointments</span></div>
@@ -246,6 +294,23 @@
             <li>Unlimited appointments, forever</li>
             <li>Everything in the free trial</li>
             <li>Weekly &amp; monthly profit notifications</li>
+            <li>Your data stays on your device</li>
+            <li>Monthly or yearly billing</li>
+          </ul>
+        </div>
+        <div class="price-card featured">
+          <div class="price-badge">NEW</div>
+          <div class="price-name">Pro + Online</div>
+          <div class="price-desc">For shops that want clients to book themselves</div>
+          <div class="price-amount">Your own <span>booking link</span></div>
+          <ul class="price-list">
+            <li>Everything in Pro, plus:</li>
+            <li>Personal booking link and QR code</li>
+            <li>Clients book without an app or account</li>
+            <li>Bookings land in your agenda, with notifications</li>
+            <li>Approve bookings for selected clients</li>
+            <li>Link tied to your Google account (Apple on iPhone), so it stays yours when you change phones</li>
+            <li>No commission per booking</li>
             <li>Monthly or yearly billing</li>
           </ul>
         </div>
@@ -255,10 +320,11 @@
 
   <section class="langs">
     <div class="section-label">Available Worldwide</div>
-    <div class="section-title" style="margin-bottom:32px;">Speaks your language. 15 of them.</div>
+    <div class="section-title" style="margin-bottom:32px;">Speaks your language. 18 of them.</div>
     <div class="lang-pills">
       <span class="lang-pill">Türkçe</span><span class="lang-pill">English</span><span class="lang-pill">Español</span>
       <span class="lang-pill">Français</span><span class="lang-pill">Português</span><span class="lang-pill">Italiano</span>
+      <span class="lang-pill">Deutsch</span><span class="lang-pill">Nederlands</span><span class="lang-pill">Svenska</span>
       <span class="lang-pill">Polski</span><span class="lang-pill">Bahasa Indonesia</span><span class="lang-pill">Русский</span>
       <span class="lang-pill">Български</span><span class="lang-pill">Magyar</span><span class="lang-pill">العربية</span>
       <span class="lang-pill">Tiếng Việt</span><span class="lang-pill">ไทย</span><span class="lang-pill">हिन्दी</span>
@@ -270,9 +336,9 @@
     <div class="final-content">
       <div class="section-label">Get Started</div>
       <h2>Your shop deserves better than a paper notebook.</h2>
-      <p>Download BarberNote and start tracking your first appointment in under a minute. No sign-up, no internet needed.</p>
-      <a href="#" class="btn-primary" data-store="ios">Download on the App Store →</a>
-      <a href="#" class="btn-secondary" data-store="android">Get it on Google Play →</a>
+      <p>Download BarberNote and start tracking your first appointment in under a minute. No sign-up needed, and your agenda works offline.</p>
+      <a href="https://apps.apple.com/app/id6789102901" class="btn-primary" data-store="ios">Download on the App Store →</a>
+      <a href="https://play.google.com/store/apps/details?id=com.elolabs.barbernote" class="btn-secondary" data-store="android">Get it on Google Play →</a>
     </div>
   </section>
 

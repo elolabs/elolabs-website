@@ -88,6 +88,40 @@
     .direct-email { text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted); }
     .direct-email a { color: var(--red); }
 
+    details p + p { margin-top: -6px; }
+    details ul { padding: 0 20px 18px 40px; }
+    details li { font-size: 14px; line-height: 1.7; color: var(--ink2); margin-bottom: 4px; }
+    .faq-title.sub-title { margin-top: 32px; }
+
+    /* DELETE NOTICE + SECTION */
+    .delete-notice {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+      padding: 14px 20px; margin: -24px 0 48px; font-size: 14px; color: var(--ink2);
+    }
+    .delete-notice a { color: var(--red); font-weight: 500; text-decoration: none; }
+    .delete-notice a:hover { text-decoration: underline; }
+
+    .delete-card {
+      background: var(--white); border: 2px solid var(--red); border-radius: 24px;
+      padding: 36px 32px; margin-bottom: 56px; scroll-margin-top: 24px;
+    }
+    .delete-card h2 { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+    .delete-card h3 { font-size: 15px; font-weight: 500; color: var(--ink); margin: 24px 0 8px; }
+    .delete-card p { font-size: 14px; line-height: 1.7; color: var(--ink2); margin-bottom: 10px; }
+    .delete-card ol, .delete-card ul { padding-left: 22px; margin-bottom: 10px; }
+    .delete-card li { font-size: 14px; line-height: 1.7; color: var(--ink2); margin-bottom: 4px; }
+    .delete-card a { color: var(--red); }
+    .delete-card .ui { font-weight: 500; color: var(--ink); }
+    .delete-card .note { background: var(--red3); border-radius: 12px; padding: 14px 16px; margin-top: 16px; }
+    .delete-card .note p { color: var(--red2); margin: 0; }
+    .delete-btn {
+      display: inline-block; margin-top: 6px; background: var(--red); color: #fff !important; text-decoration: none;
+      border-radius: 12px; padding: 11px 20px; font-size: 14px; font-weight: 500;
+    }
+    .delete-btn:hover { background: var(--red2); }
+    @media (max-width: 520px) { .delete-card, .form-card { padding: 28px 20px; } }
+
     footer {
       padding: 32px 5vw; border-top: 1px solid var(--border); background: var(--white);
       display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
@@ -110,33 +144,45 @@
     <h1>How can we help?</h1>
     <p class="sub">Browse the FAQ below or send us a message. We typically respond within 1–2 business days.</p>
 
+    <div class="delete-notice">
+      <span>Want to delete your online booking link and account?</span>
+      <a href="#delete-account">Delete your link and account ↓</a>
+    </div>
+
     <!-- FAQ -->
     <div class="faq">
       <div class="faq-title">Frequently Asked Questions</div>
 
       <details>
         <summary>Is BarberNote really free?</summary>
-        <p>Yes. You get a free trial of 150 appointments with full access to every feature — no time limit, no credit card required. Once you've used your trial, BarberNote Pro removes the appointment limit. Themes, languages, backup and every other feature stay free for everyone.</p>
+        <p>Yes. You get a free trial of 150 appointments with full access to the agenda, customers, cash and reports — no time limit, no credit card required. Once you've used your trial, BarberNote Pro removes the appointment limit. Themes, languages and backup stay free for everyone. Online booking, your personal booking link, is part of the Pro + Online subscription.</p>
       </details>
 
       <details>
         <summary>Is my data private and secure?</summary>
-        <p>Completely. BarberNote stores all your shop data — appointments, customers, cash records — locally on your device. We never see it, never sync it to a server, and never share it with anyone. The app works fully offline.</p>
+        <p>Your agenda — appointments, customers, notes and cash records — is stored only on your device. We never receive it and never share it with anyone, and these features work offline.</p>
+        <p>If you use Online booking, only what your booking link needs is stored on our server: your shop details and services, the busy times in your agenda (times only, no names) and the bookings clients make through your link. See our <a href="/barbernote/privacy">Privacy Policy</a> for the details.</p>
       </details>
 
       <details>
         <summary>Do I need an internet connection to use BarberNote?</summary>
-        <p>No. BarberNote is designed to work fully offline. Your appointments, customers, and cash records are all stored on your device. An internet connection is only needed for the optional Pro subscription purchase.</p>
+        <p>Not for the agenda. Your appointments, customers, cash records and reports are stored on your device and work offline.</p>
+        <p>You need an internet connection to buy or restore a subscription, and for Online booking: your booking link runs on our server, and the app needs a connection to receive new online bookings and to keep your free times up to date. If the app can't reach our server, the agenda shows "No connection: online bookings are not updating".</p>
       </details>
 
       <details>
         <summary>How do I restore a purchase?</summary>
-        <p>If you reinstalled the app or switched devices, go to Settings → BarberNote Pro → tap "Restore Purchases". Your subscription is restored through the store you bought it from — your Apple ID on iPhone, or your Google Play account on Android. Note that a subscription bought on one platform cannot be transferred to the other.</p>
+        <p>If you reinstalled the app or switched devices, open the subscription screen and tap "Restore Purchases". Your subscription is restored through the store you bought it from — your Apple Account on iPhone, or your Google Play account on Android. Note that a subscription bought on one platform cannot be transferred to the other. If you use Online booking, see "I changed my phone or reinstalled the app" below.</p>
       </details>
 
       <details>
-        <summary>How do I cancel my Pro subscription?</summary>
-        <p>You can cancel anytime through Google Play. Open Google Play → Profile → Payments & subscriptions → Subscriptions → BarberNote Pro → Cancel. You'll keep Pro access until the end of your billing period.</p>
+        <summary>How do I cancel my subscription?</summary>
+        <p>Subscriptions (Pro and Pro + Online) are managed by the store you bought them from. You'll keep access until the end of your billing period.</p>
+        <ul>
+          <li><strong>Android:</strong> open Google Play → tap your profile picture → Payments &amp; subscriptions → Subscriptions → BarberNote → Cancel subscription.</li>
+          <li><strong>iPhone:</strong> open Settings → tap your name → Subscriptions → BarberNote → Cancel Subscription.</li>
+        </ul>
+        <p>Uninstalling the app or deleting your booking link does not cancel your subscription.</p>
       </details>
 
       <details>
@@ -156,14 +202,84 @@
 
       <details>
         <summary>The app is in the wrong language. How do I change it?</summary>
-        <p>Go to Settings → Language and select your preferred language. BarberNote supports 15 languages: Turkish, English, Spanish, French, Portuguese, Italian, Polish, Indonesian, Russian, Bulgarian, Hungarian, Arabic, Vietnamese, Thai, and Hindi.</p>
+        <p>Go to Settings → Language and select your preferred language. BarberNote supports 18 languages: Turkish, English, Spanish, French, Portuguese, Italian, Polish, Indonesian, Arabic, Vietnamese, Thai, Hindi, Russian, Bulgarian, Hungarian, German, Dutch, and Swedish. Your online booking page is available in the same 18 languages.</p>
       </details>
 
       <details>
         <summary>What are the weekly and monthly notifications?</summary>
         <p>If you allow notifications, BarberNote sends you a short summary every Monday and on the first day of each month — showing how many appointments you completed, your income, tips, expenses, and net profit for that period.</p>
       </details>
+
+      <div class="faq-title sub-title">Online booking</div>
+
+      <details>
+        <summary>What is Online booking?</summary>
+        <p>With the Pro + Online subscription you get your own booking link (for example book.elolabs.app/b/your-shop). Share it on Instagram, WhatsApp or as a QR code. Clients open it in their browser, see your free times and book — no app to install, no account to create. The booking lands in your agenda and you get a notification. There's no commission or fee per booking.</p>
+        <p>To set it up, go to Settings → Online booking.</p>
+      </details>
+
+      <details>
+        <summary>Can I approve some clients' bookings before they're confirmed?</summary>
+        <p>Yes. By default every client can book instantly. Open a client's card and turn off "Can book instantly": that client's online bookings then wait for your approval in the agenda. If you don't answer, the request expires 30 minutes before the appointment (or after 24 hours, whichever comes first).</p>
+      </details>
+
+      <details>
+        <summary>What happens to my link if my subscription ends?</summary>
+        <p>Your page stays up but stops taking new bookings: clients see "Online booking isn't available right now" with your Call and WhatsApp buttons. Existing bookings aren't cancelled. Your link stays reserved for you and works again as soon as you resubscribe. The rest of BarberNote keeps working as before.</p>
+      </details>
+
+      <details>
+        <summary>I changed my phone or reinstalled the app. How do I get my link back?</summary>
+        <p>Install BarberNote and make sure your phone's store account is the one you subscribed with.</p>
+        <ul>
+          <li><strong>Automatically:</strong> while your Pro + Online subscription is active, BarberNote finds your link through your subscription and moves it to the new phone — usually without you doing anything. You'll see "Your link has been moved to this phone." on the Online booking screen.</li>
+          <li><strong>With your Google account:</strong> if your link doesn't come back by itself, go to Settings → Online booking and tap "Continue with Google". Choose the Google account you used when you created your link. If you see "No link is connected to this account", choose another Google account on your phone.</li>
+          <li><strong>On iPhone,</strong> continue with Apple instead, using the Apple Account you created your link with.</li>
+          <li><strong>If your subscription isn't found,</strong> tap "Restore my link" on the Online booking screen (or "Restore Purchases" on the subscription screen).</li>
+        </ul>
+        <p>Your link moves to the new phone; the old phone can no longer manage it. Moving a link between iPhone and Android isn't supported automatically — <a href="#support-form">contact us</a> and we'll help.</p>
+      </details>
     </div>
+
+    <!-- DELETE LINK AND ACCOUNT -->
+    <section class="delete-card" id="delete-account">
+      <h2>Delete your BarberNote link and account</h2>
+      <p>BarberNote has no accounts for the agenda: your appointments, customers and cash records live only on your phone. If you use Online booking, your booking link and its connection to your Google account (on Android) or Apple Account (on iPhone) are stored on our server. You can delete them at any time — in the app, or by asking us.</p>
+
+      <h3>Delete in the app</h3>
+      <ol>
+        <li>Open BarberNote and go to <span class="ui">Settings → Online booking</span>.</li>
+        <li>Scroll to the bottom and tap <span class="ui">"Delete my link and Google connection"</span> (on iPhone: <span class="ui">"Delete my link and Apple connection"</span>).</li>
+        <li>Confirm with <span class="ui">Delete</span>. You'll see "Your link has been deleted."</li>
+      </ol>
+
+      <h3>Delete without the app</h3>
+      <p>If you no longer have the app, send us a request:</p>
+      <ul>
+        <li>use the <a href="#support-form" data-topic="delete">form below</a> and choose the topic <span class="ui">"Delete my link / account"</span>, or</li>
+        <li>email <a class="support-email" href="#">support@elolabs.app</a>.</li>
+      </ul>
+      <p>Please include your link name (for example <em>book.elolabs.app/b/your-shop</em>). To make sure the request comes from the link's owner, we'll send a WhatsApp message to the shop phone number shown on your booking page and ask you to confirm. We delete your link within 7 days after you confirm.</p>
+      <a href="#support-form" class="delete-btn" data-topic="delete">Request deletion →</a>
+
+      <h3>What is deleted</h3>
+      <ul>
+        <li>Your booking link and everything on it: shop name, phone, address, working hours, services and prices.</li>
+        <li>Your Google or Apple account connection.</li>
+        <li>Your online booking data: busy times, client approval settings, notification token and subscription identifiers.</li>
+        <li>Your clients' online bookings, including their names and phone numbers. Clients can no longer open your link or their online bookings.</li>
+      </ul>
+
+      <h3>What is kept</h3>
+      <ul>
+        <li><strong>Your link name</strong> (and any previous link names) is kept on a locked list, without any personal data, so nobody else can take your link and receive your clients. It can't be used again — not even by you.</li>
+        <li><strong>Your agenda</strong> — appointments, customers, notes, cash — never reaches our server, so we don't hold it. It stays on your phone until you delete it there (Settings → "Reset All Data") or uninstall the app.</li>
+      </ul>
+
+      <div class="note">
+        <p><strong>Your subscription continues.</strong> Deleting your link doesn't cancel your subscription. To stop paying, cancel it in Google Play or the App Store (see "How do I cancel my subscription?" above).</p>
+      </div>
+    </section>
 
     <!-- CONTACT FORM -->
     <div class="form-card">
@@ -189,6 +305,7 @@
             <option value="bug">Bug Report</option>
             <option value="billing">Billing / Subscription</option>
             <option value="feature">Feature Request</option>
+            <option value="delete">Delete my link / account</option>
             <option value="other">Other</option>
           </select>
         </div>
@@ -218,6 +335,17 @@
     const u = 'support'; const d = 'elolabs.app';
     const el = document.getElementById('support-email-link');
     if (el) { el.href = 'mailto:' + u + '@' + d; el.textContent = u + '@' + d; }
+    document.querySelectorAll('.support-email').forEach(a => {
+      a.href = 'mailto:' + u + '@' + d + '?subject=' + encodeURIComponent('Delete my link / account');
+      a.textContent = u + '@' + d;
+    });
+
+    // "Request deletion" links pick the matching topic in the form.
+    const topic = document.getElementById('topic');
+    document.querySelectorAll('[data-topic]').forEach(a => {
+      a.addEventListener('click', () => { topic.value = a.dataset.topic; });
+    });
+    if (new URLSearchParams(location.search).get('topic') === 'delete') topic.value = 'delete';
 
     const form = document.getElementById('support-form');
     const successMsg = document.getElementById('success-msg');

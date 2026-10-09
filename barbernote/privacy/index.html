@@ -34,12 +34,20 @@
       border-radius: 16px; padding: 24px 28px; margin-bottom: 48px;
     }
     .highlight-box p { font-size: 15px; line-height: 1.7; color: var(--red2); font-weight: 500; }
+    .highlight-box p:last-child { margin-bottom: 0; }
 
     h2 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); margin: 40px 0 12px; }
+    h3 { font-size: 16px; font-weight: 500; color: var(--ink); margin: 24px 0 8px; }
     p { font-size: 15px; line-height: 1.75; color: var(--ink2); margin-bottom: 14px; }
     ul { padding-left: 20px; margin-bottom: 14px; }
     ul li { font-size: 15px; line-height: 1.75; color: var(--ink2); margin-bottom: 6px; }
     a { color: var(--red); }
+
+    .toc { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px; margin-bottom: 8px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { font-size: 14px; line-height: 1.9; color: var(--ink2); }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
 
     footer {
       padding: 32px 5vw; border-top: 1px solid var(--border);
@@ -61,93 +69,301 @@
   <div class="content">
     <div class="doc-label">Legal</div>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: September 2026</p>
+    <p class="updated">Last updated: October 2026</p>
 
     <div class="highlight-box">
       <p>
-        BarberNote is designed with privacy at its core.
-        <strong>We do not collect, store, or share your shop or customer data.</strong>
-        All your appointments, customers, and cash records stay on your device — always.
+        <strong>Your agenda stays on your phone.</strong>
+        Appointments, customers, notes, cash and reports are stored only on your device. We never receive them.
+      </p>
+      <p>
+        If you turn on the optional <strong>Online booking</strong> feature (Pro + Online subscription), we store
+        only what your booking link needs to work. This policy explains exactly what that is, why we need it,
+        how long we keep it and how you can delete it.
       </p>
     </div>
 
-    <h2>1. Information We Do Not Collect</h2>
-    <p>BarberNote does not collect any personally identifiable information about you or your customers. Specifically, we do not collect:</p>
+    <div class="toc">
+      <ol>
+        <li><a href="#who">Who we are</a></li>
+        <li><a href="#on-device">The app on your device (Free and Pro)</a></li>
+        <li><a href="#online">Online booking (Pro + Online)</a></li>
+        <li><a href="#clients">Clients who book through a barber's link</a></li>
+        <li><a href="#sign-in">Google and Apple sign-in</a></li>
+        <li><a href="#notifications">Notifications</a></li>
+        <li><a href="#abuse">Abuse protection</a></li>
+        <li><a href="#retention">How long we keep data</a></li>
+        <li><a href="#third-parties">Third-party services</a></li>
+        <li><a href="#rights">Your choices and deleting your data</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#children">Children's privacy</a></li>
+        <li><a href="#changes">Changes to this policy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </div>
+
+    <h2 id="who">1. Who we are</h2>
+    <p>
+      BarberNote is an app for independent barbers, made by EloLabs. In this policy, "we" means EloLabs,
+      "you" means the barber using the app, and "clients" means people who book an appointment through
+      a barber's online booking link.
+    </p>
+
+    <h2 id="on-device">2. The app on your device (Free and Pro)</h2>
+    <p>
+      Everything you enter in BarberNote — appointments, customers (names, phone numbers, notes), services,
+      products, cash records, expenses and settings — is stored only on your device. BarberNote has no user
+      accounts: you don't sign up or sign in to use the agenda. The agenda, customers, cash and reports work
+      offline.
+    </p>
+    <p>The app uses the internet only for the following:</p>
     <ul>
-      <li>Your name, email address, or any account credentials</li>
-      <li>Your customers' names, phone numbers, or notes</li>
-      <li>Appointment, cash, or expense records</li>
-      <li>Device identifiers or location data</li>
-      <li>Usage analytics or behavioral data</li>
+      <li>
+        <strong>Subscriptions.</strong> Purchases are handled by the Apple App Store or Google Play, and
+        managed through RevenueCat, which links your purchase to an anonymous app user ID. We never receive
+        your payment details.
+      </li>
+      <li>
+        <strong>App settings.</strong> From time to time the app asks our server for a few app-wide settings
+        (for example an update notice, a maintenance notice, or the address of a tutorial video). This request
+        contains only the app's language. Like every internet request, it also reveals your device's IP address
+        to our hosting provider. It contains no shop or customer data.
+      </li>
+      <li><strong>Online booking</strong>, only if you turn it on (see section 3).</li>
+    </ul>
+    <p>
+      <strong>Weekly and monthly summaries</strong> are local notifications created on your device; no data
+      leaves your phone for them.
+    </p>
+    <p>
+      <strong>WhatsApp and SMS messages.</strong> When you tap a reminder or message button, BarberNote opens
+      WhatsApp (or your SMS app) on your phone with the client's number and the text filled in. The message is
+      sent by you, from your phone; we never see it.
+    </p>
+    <p>
+      <strong>Backups.</strong> A backup is a file that you create and share yourself using your phone's share
+      sheet. We have no access to it.
+    </p>
+
+    <h2 id="online">3. Online booking (Pro + Online)</h2>
+    <p>
+      Online booking gives you a personal link (for example <em>book.elolabs.app/b/your-shop</em>) where
+      clients can book a free time without installing an app. To make this work, the following information
+      is stored on our server, hosted by Cloudflare (Cloudflare Workers and Cloudflare D1 database).
+    </p>
+
+    <h3>Your booking page</h3>
+    <ul>
+      <li>Your link name, and any previous link names (they keep redirecting to your current link).</li>
+      <li>
+        Shop name, shop phone number, address (only if you fill it in), language, currency, country calling
+        code, time zone, working days and hours, appointment interval, advance notice, temporary closures,
+        theme color, and whether online booking is on or off.
+      </li>
+      <li>Your services: name, price and, if you set one, duration.</li>
+    </ul>
+    <p>These are shown on your public booking page so clients can see your services and book.</p>
+
+    <h3>Busy times from your agenda</h3>
+    <p>
+      To avoid double bookings, the app sends the start and end times of the appointments in your agenda for
+      today and roughly the next 60 days. Only the times are sent — no client names, services, prices or notes.
+    </p>
+
+    <h3>Clients who need your approval</h3>
+    <p>
+      If you turn off "Can book instantly" for a client, the app sends a one-way hash of that client's phone
+      number (SHA-256 with a value unique to your shop), not the number itself, so the server can recognise
+      their bookings and hold them for your approval.
+    </p>
+
+    <h3>Technical identifiers</h3>
+    <ul>
+      <li>Your anonymous RevenueCat app user ID, and a hash of a random key the app creates for your phone (the key itself stays in your phone's secure storage and is not included in backups).</li>
+      <li>Your Google or Apple account identifier (see section 5).</li>
+      <li>Your push notification token (see section 6).</li>
+      <li>Store subscription identifiers (Apple transaction ID or Google Play order number) and the RevenueCat subscription ID, so your link can be restored if you change phones or reinstall the app.</li>
+      <li>Whether your subscription is active, when it was last checked, when the app last connected, and how many times you changed your link name.</li>
+    </ul>
+    <p>
+      To check your subscription, our server asks RevenueCat using your anonymous app user ID. We receive the
+      subscription status and store identifiers, never your payment details.
+    </p>
+
+    <h3>Bookings from your link</h3>
+    <p>
+      Bookings that clients make through your link are stored on our server (see section 4) and delivered to
+      your app. Once in your app, they are kept on your phone like your other appointments.
+    </p>
+
+    <h2 id="clients">4. Clients who book through a barber's link</h2>
+    <p>
+      If you book an appointment through a barber's BarberNote link, the barber receives your booking in their
+      BarberNote app. To make and manage the booking, we store:
+    </p>
+    <ul>
+      <li>The name and phone number you enter.</li>
+      <li>The services you chose (with their name, price and duration at the time of booking), the date and time, and the language of the page.</li>
+      <li>The booking's status (confirmed, waiting for approval, cancelled, declined or expired), who cancelled it, a booking code for your booking link, and a one-time request ID that prevents duplicate bookings if your connection drops.</li>
+    </ul>
+    <p>We use this to:</p>
+    <ul>
+      <li>deliver your booking to the barber and notify them;</li>
+      <li>let you view and cancel your booking from your booking link, or find it with your phone number ("Find my booking" shows your name only in masked form, for example A*** Y***);</li>
+      <li>prevent abuse, for example by limiting the number of upcoming bookings per phone number at the same barber.</li>
+    </ul>
+    <p>
+      <strong>In your browser.</strong> The booking page saves your booking codes and the name, phone number
+      and country you entered in your browser's local storage, on your own device, so you can see your bookings
+      and don't have to type your details again. You can remove them by clearing this site's data in your
+      browser.
+    </p>
+    <p>
+      <strong>Links on the booking page.</strong> The Call, WhatsApp, address (Google Maps) and "Add to calendar"
+      (Google Calendar on Android, a calendar file on other devices) buttons open those apps or services
+      directly from your device.
+    </p>
+    <p>
+      The barber may also keep your booking in their agenda on their phone. For questions about how a barber
+      uses your information, please contact the barber.
+    </p>
+
+    <h2 id="sign-in">5. Google and Apple sign-in</h2>
+    <p>
+      Online booking links are tied to the barber's Google account (on Android) or Apple Account (on iPhone),
+      so the link stays with its owner when they change phones. Sign-in is only used for Online booking;
+      the Free and Pro features need no account.
+    </p>
+    <ul>
+      <li>
+        <strong>Google:</strong> when you continue with Google, Google sends us a sign-in token that includes
+        your name, email address and profile picture. We use the token only to verify the sign-in and to read
+        your account's permanent identifier. <strong>Your name, email address and profile picture are not stored.</strong>
+      </li>
+      <li>
+        <strong>Apple:</strong> with Sign in with Apple we do not request your name or email address.
+      </li>
+    </ul>
+    <p>
+      We store only the provider (Google or Apple) and that permanent account identifier. We use it to keep
+      your link connected to you and to restore it on a new phone. The app requests basic sign-in only, with
+      no access to your contacts, files, calendar or other Google or Apple data.
+    </p>
+
+    <h2 id="notifications">6. Notifications</h2>
+    <p>
+      If you use Online booking and allow notifications, the app registers a push notification token with our
+      server. When a client books or cancels, our server sends a notification through Expo's push notification
+      service, which delivers it through Firebase Cloud Messaging (Android) or the Apple Push Notification
+      service (iPhone). The notification contains the client's name and the booking time.
+    </p>
+    <p>
+      The weekly and monthly summaries and the "share your link" reminders are local notifications created on
+      your device.
+    </p>
+
+    <h2 id="abuse">7. Abuse protection</h2>
+    <ul>
+      <li>
+        <strong>Cloudflare Turnstile.</strong> The booking form uses Cloudflare Turnstile in invisible mode to
+        tell people from automated bots. Turnstile collects technical signals from the browser, and our server
+        sends the Turnstile token and the visitor's IP address to Cloudflare for verification. See the
+        <a href="https://www.cloudflare.com/turnstile-privacy-policy/" target="_blank" rel="noopener">Cloudflare Turnstile Privacy Addendum</a>.
+      </li>
+      <li>
+        <strong>Rate limits.</strong> To limit bookings and searches per visitor, our server keeps short-lived
+        counters keyed by IP address. They are deleted within about two hours. Cloudflare also applies a
+        short-term rate limit to booking requests.
+      </li>
     </ul>
 
-    <h2>2. Data Storage</h2>
-    <p>
-      All data you enter in BarberNote — appointments, customers, services, cash records, settings —
-      is stored exclusively on your device using local storage.
-      No data is transmitted to our servers or any third-party servers.
-    </p>
-    <p>
-      BarberNote works fully offline. An internet connection is only used for one optional feature:
-      in-app purchases for BarberNote Pro.
-    </p>
-    <p>
-      When you tap the WhatsApp button on an appointment, BarberNote opens WhatsApp on your device
-      with the customer's number and your reminder message already filled in. This happens on your
-      phone, between you and WhatsApp — we never see or transmit that number.
-    </p>
-
-    <h2>3. In-App Purchases</h2>
-    <p>
-      BarberNote offers an optional Pro subscription via the Apple App Store (on iOS)
-      and Google Play (on Android).
-      Purchase transactions are handled entirely by the app store you bought from and RevenueCat,
-      subject to their respective privacy policies.
-      To manage your subscription, RevenueCat associates your purchase with an
-      anonymous app user identifier — no payment details, name, or other personal
-      information is ever shared with us.
-    </p>
-
-    <h2>4. Notifications</h2>
-    <p>
-      BarberNote may send local notifications to give you a weekly or monthly summary
-      of your shop's activity (appointments completed, income, tips, expenses, and net profit).
-      These notifications are generated and delivered entirely on your device —
-      no data leaves your phone to make this work.
-    </p>
-
-    <h2>5. Backup & Export</h2>
-    <p>
-      The Backup & Export feature allows you to export your shop data as a JSON file.
-      This export is initiated by you and shared via your device's native share sheet.
-      We have no access to exported files.
-    </p>
-
-    <h2>6. Third-Party Services</h2>
-    <p>BarberNote uses the following third-party services:</p>
+    <h2 id="retention">8. How long we keep data</h2>
     <ul>
-      <li><strong>RevenueCat</strong> — subscription management. Their privacy policy applies to purchase flows.</li>
-      <li><strong>Apple App Store</strong> — app distribution and payments on iOS.</li>
-      <li><strong>Google Play</strong> — app distribution and payments on Android.</li>
+      <li><strong>Online bookings</strong> (including the client's name and phone number) are deleted completely 90 days after the appointment ends. We don't keep anonymised copies.</li>
+      <li><strong>Booking notifications for the app</strong> (the list the app reads new bookings and cancellations from) are deleted 90 days after they were created.</li>
+      <li><strong>Busy times</strong> from your agenda are deleted one day after they end.</li>
+      <li><strong>Rate limit counters</strong> (which contain IP addresses) are deleted within about two hours.</li>
+      <li>
+        <strong>Your booking page, account identifier and subscription identifiers</strong> are kept for as long as
+        your link exists, including after your subscription ends: your link stays reserved for you, so it works
+        again if you resubscribe. They are deleted when you delete your link (see section 10).
+      </li>
+      <li>
+        <strong>Link names.</strong> When a link is deleted, its name (and any previous names) is kept on a
+        locked list with only the date of deletion, so that nobody else can take it and receive the previous
+        owner's clients. No personal data is kept with it.
+      </li>
     </ul>
-    <p>We do not use any advertising networks, analytics SDKs, or tracking tools.</p>
-
-    <h2>7. Children's Privacy</h2>
     <p>
-      BarberNote is a business tool intended for use by barbershop owners and staff,
-      and is not directed at children. We do not knowingly collect data from children under 13.
+      Our hosting provider, Cloudflare, may keep short-term technical logs of requests (such as time, address
+      requested and IP address) for operation and security.
     </p>
 
-    <h2>8. Changes to This Policy</h2>
+    <h2 id="third-parties">9. Third-party services</h2>
+    <ul>
+      <li><strong>Cloudflare</strong> — hosting of our server and booking pages (Cloudflare Workers), database (Cloudflare D1), bot protection (Turnstile) and rate limiting. Cloudflare may process data in several countries.</li>
+      <li><strong>RevenueCat</strong> — subscription management, using an anonymous app user ID.</li>
+      <li><strong>Apple App Store and Google Play</strong> — app distribution and payments.</li>
+      <li><strong>Google Sign-In and Sign in with Apple</strong> — tying an online booking link to its owner (Online booking only).</li>
+      <li><strong>Expo push notifications, Firebase Cloud Messaging and Apple Push Notification service</strong> — delivering booking notifications to the barber (Online booking only).</li>
+      <li>
+        <strong>YouTube</strong> — the tutorial video in the app opens a page on book.elolabs.app that plays the
+        video with YouTube's privacy-enhanced mode (youtube-nocookie.com). When you play it, Google may collect
+        data under its own privacy policy.
+      </li>
+      <li><strong>WhatsApp, your SMS app, Google Maps and Google Calendar</strong> — opened by you from the app or the booking page; we don't send them any data.</li>
+    </ul>
     <p>
-      If we update this privacy policy, the new version will be posted on this page
-      with an updated date. We encourage you to review it periodically.
+      We do not use advertising networks, analytics SDKs or tracking tools, and we do not sell personal data.
     </p>
 
-    <h2>9. Contact</h2>
+    <h2 id="rights">10. Your choices and deleting your data</h2>
+    <ul>
+      <li>
+        <strong>Delete your link and account connection</strong> in the app: Settings → Online booking →
+        "Delete my link and Google connection" (on iPhone: "Delete my link and Apple connection"). If you no
+        longer have the app, you can ask us to delete it —
+        <a href="/barbernote/support#delete-account">see how to delete your link and account</a>.
+      </li>
+      <li>
+        <strong>Agenda data</strong> on your phone is deleted when you use Settings → "Reset All Data", clear the app's
+        data or uninstall the app (make a backup first if you want to keep it).
+      </li>
+      <li>
+        <strong>Clients</strong> can cancel their booking at any time before it starts from their booking link.
+        To ask about or delete booking information before it is removed automatically, contact the barber or
+        us at <a href="mailto:support@elolabs.app">support@elolabs.app</a>.
+      </li>
+      <li>
+        You can ask us what data we hold about you, or ask us to correct or delete it, at
+        <a href="mailto:support@elolabs.app">support@elolabs.app</a>. To protect your data, we may ask you to
+        confirm that the request comes from you.
+      </li>
+    </ul>
+
+    <h2 id="security">11. Security</h2>
+    <p>
+      All connections to our server use HTTPS. The key that identifies your phone is stored on our server only
+      as a hash, and client phone numbers sent for approval settings are stored only as hashes.
+    </p>
+
+    <h2 id="children">12. Children's privacy</h2>
+    <p>
+      BarberNote is a business tool for barbershop owners and staff and is not directed at children. We do not
+      knowingly collect data from children under 13.
+    </p>
+
+    <h2 id="changes">13. Changes to this policy</h2>
+    <p>
+      If we update this privacy policy, the new version will be posted on this page with an updated date.
+      We encourage you to review it periodically.
+    </p>
+
+    <h2 id="contact">14. Contact</h2>
     <p>
       Questions about this privacy policy? Contact us at
-      <a href="mailto:support@elolabs.app">support@elolabs.app</a>.
+      <a href="mailto:support@elolabs.app">support@elolabs.app</a> or through our
+      <a href="/barbernote/support">support page</a>.
     </p>
   </div>
 
