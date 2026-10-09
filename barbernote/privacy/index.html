@@ -152,7 +152,7 @@
       Online booking gives you a personal link (for example <em>book.elolabs.app/b/your-shop</em>) where
       clients can book a free time without installing an app. To make this work, the following information
       is stored on our server, hosted by Cloudflare (Cloudflare Workers and Cloudflare D1 database).
-      Online booking data is stored on Cloudflare servers in Eastern Europe.
+      Data is stored on Cloudflare servers in Eastern Europe. Requests may pass through Cloudflare's network in other countries.
     </p>
 
     <h3>Your booking page</h3>
@@ -317,7 +317,7 @@
 
     <h2 id="third-parties">9. Third-party services</h2>
     <ul>
-      <li><strong>Cloudflare</strong> — hosting of our server and booking pages (Cloudflare Workers), database (Cloudflare D1), bot protection (Turnstile) and rate limiting. Online booking data is stored on Cloudflare servers in Eastern Europe; requests are handled by Cloudflare's global network.</li>
+      <li><strong>Cloudflare</strong> — hosting of our server and booking pages (Cloudflare Workers), database (Cloudflare D1), bot protection (Turnstile) and rate limiting. Data is stored on Cloudflare servers in Eastern Europe. Requests may pass through Cloudflare's network in other countries.</li>
       <li><strong>RevenueCat</strong> — subscription management, using an anonymous app user ID.</li>
       <li><strong>Apple App Store and Google Play</strong> — app distribution and payments.</li>
       <li><strong>Google Sign-In and Sign in with Apple</strong> — tying an online booking link to its owner (Online booking only).</li>
