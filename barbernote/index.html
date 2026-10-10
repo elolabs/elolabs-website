@@ -84,16 +84,8 @@
     .online { padding: 90px 5vw; background: var(--bg); }
     .online-inner { max-width: 1100px; margin: 0 auto; }
     .new-tag { display: inline-block; background: var(--red); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; margin-left: 8px; vertical-align: middle; letter-spacing: .5px; }
-    .booking-mock { width: 100%; max-width: 270px; background: var(--white); border: 6px solid var(--dark); border-radius: 22px; box-shadow: 0 20px 50px rgba(0,0,0,.12); padding: 20px 16px; text-align: left; }
-    .booking-mock .bm-url { font-size: 11px; color: var(--muted); background: var(--bg); border-radius: 8px; padding: 6px 10px; margin-bottom: 16px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-    .booking-mock .bm-shop { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 4px; }
-    .booking-mock .bm-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 14px 0 8px; }
-    .booking-mock .bm-service { display: flex; justify-content: space-between; font-size: 13px; border: 2px solid var(--blue); border-radius: 10px; padding: 9px 12px; }
-    .booking-mock .bm-service b { color: var(--blue); font-weight: 600; }
-    .booking-mock .bm-times { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-    .booking-mock .bm-times span { font-size: 13px; text-align: center; border: 1px solid var(--border); border-radius: 8px; padding: 7px 0; }
-    .booking-mock .bm-times span.on { background: var(--blue); border-color: var(--blue); color: #fff; }
-    .booking-mock .bm-btn { margin-top: 16px; background: var(--blue); color: #fff; text-align: center; font-size: 14px; font-weight: 500; border-radius: 10px; padding: 11px; }
+    .feature-shot picture { display: block; width: 100%; max-width: 240px; }
+    .feature-shot picture img { height: auto; }
 
     .pricing { padding: 90px 5vw; }
     .pricing-inner { max-width: 1040px; margin: 0 auto; }
@@ -256,15 +248,10 @@
           </ul>
         </div>
         <div class="feature-shot">
-          <div class="booking-mock" aria-hidden="true">
-            <div class="bm-url">book.elolabs.app/b/your-shop</div>
-            <div class="bm-shop">Your Barbershop</div>
-            <div class="bm-label">Services</div>
-            <div class="bm-service"><span>Haircut · 30 min</span><b>Select</b></div>
-            <div class="bm-label">Available times</div>
-            <div class="bm-times"><span>10:00</span><span class="on">10:30</span><span>11:30</span><span>14:00</span><span>15:30</span><span>16:00</span></div>
-            <div class="bm-btn">Book</div>
-          </div>
+          <picture>
+            <source srcset="/barbernote/screens/screen-booking.webp" type="image/webp" />
+            <img src="/barbernote/screens/screen-booking.png" width="540" height="1061" loading="lazy" alt="BarberNote online booking page: the client picks a service and a day from the barber's link" />
+          </picture>
         </div>
       </div>
     </div>
