@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Tutiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal: #1E6B66; --teal2: #165450; --teal3: #EAF2F1; --teal-b: #B9D6D3;
+      --ink: #0D1117; --ink2: #3A4251; --muted: #6B7484;
+      --border: #E8ECF2; --bg: #F7F9FC; --white: #FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 64px;
+      background: var(--white); border-bottom: 1px solid var(--border);
+    }
+    .nav-back { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-back:hover { color: var(--teal); }
+    .nav-brand { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: var(--ink); }
+
+    .page { max-width: 640px; margin: 0 auto; padding: 64px 5vw 100px; }
+
+    .doc-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+    h1 { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -1px; color: var(--ink); margin-bottom: 12px; }
+    .sub { font-size: 16px; color: var(--ink2); line-height: 1.6; margin-bottom: 48px; }
+
+    /* FAQ */
+    .faq { margin-bottom: 56px; }
+    .faq-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 16px; }
+    details {
+      border: 1px solid var(--border); border-radius: 14px;
+      background: var(--white); margin-bottom: 10px; overflow: hidden;
+    }
+    summary {
+      padding: 18px 20px; font-size: 15px; font-weight: 500; color: var(--ink);
+      cursor: pointer; list-style: none;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; font-size: 20px; color: var(--teal); font-weight: 300; flex: none; }
+    details[open] summary::after { content: '−'; }
+    details p { padding: 0 20px 18px; font-size: 14px; line-height: 1.7; color: var(--ink2); }
+    details p + p { margin-top: -6px; }
+
+    /* DELETE DATA */
+    .delete-card { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 32px 32px 18px; margin-bottom: 56px; scroll-margin-top: 20px; }
+    .delete-card .doc-label { margin-bottom: 8px; }
+    .delete-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+    .delete-sub { font-size: 14px; color: var(--ink2); line-height: 1.65; margin-bottom: 20px; }
+    .delete-card h3 { font-size: 15px; font-weight: 600; color: var(--ink); margin: 18px 0 8px; }
+    .delete-card ul { padding-left: 20px; margin-bottom: 8px; }
+    .delete-card li { font-size: 14px; line-height: 1.7; color: var(--ink2); margin-bottom: 4px; }
+    .delete-card a { color: var(--teal); }
+
+    /* FORM */
+    .form-card { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 40px 36px; }
+    .form-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .form-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+
+    .field { margin-bottom: 20px; }
+    label { display: block; font-size: 13px; font-weight: 600; color: var(--ink2); margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%; border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 14px; font-size: 15px; font-family: 'DM Sans', sans-serif;
+      color: var(--ink); background: var(--bg);
+      transition: border-color .2s, box-shadow .2s; outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(30,107,102,.14);
+      background: var(--white);
+    }
+    textarea { resize: vertical; min-height: 140px; }
+
+    .submit-btn {
+      width: 100%; background: var(--teal); color: #fff;
+      border: none; border-radius: 12px; padding: 14px 28px;
+      font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; transition: all .2s;
+      box-shadow: 0 4px 16px rgba(30,107,102,.28);
+    }
+    .submit-btn:hover { background: var(--teal2); transform: translateY(-1px); }
+    .submit-btn:active { transform: translateY(0); }
+
+    .success-msg {
+      display: none; background: #d1fae5; border: 1px solid #6ee7b7;
+      border-radius: 14px; padding: 20px 24px;
+      font-size: 15px; color: #065f46; font-weight: 500; margin-top: 20px;
+    }
+
+    .direct-email { text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted); }
+    .direct-email a { color: var(--teal); }
+
+    footer {
+      padding: 32px 5vw; border-top: 1px solid var(--border); background: var(--white);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    footer span { font-size: 13px; color: var(--muted); }
+    footer a { font-size: 13px; color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--teal); }
+
+    @media (max-width: 520px) { .form-card, .delete-card { padding-left: 22px; padding-right: 22px; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/tutiva" class="nav-back">← Tutiva</a>
+    <span class="nav-brand">Support</span>
+    <span></span>
+  </nav>
+
+  <div class="page">
+    <div class="doc-label">Help Center</div>
+    <h1>How can we help?</h1>
+    <p class="sub">Browse the FAQ below or send us a message. We typically respond within 1–2 business days.</p>
+
+    <!-- FAQ -->
+    <div class="faq">
+      <div class="faq-title">Frequently Asked Questions</div>
+
+      <details>
+        <summary>Is Tutiva free?</summary>
+        <p>Yes, for your first 100 lessons, with every feature unlocked, unlimited students and no time limit. A lesson counts once its time has passed, whether or not you mark it. Cancelled lessons don't count, and neither do past lessons you add for dates before you started using Tutiva.</p>
+        <p>After 100 lessons, Tutiva Pro removes the limit. Without Pro, you can still open and view all your data and create a backup at any time; nothing is locked away.</p>
+      </details>
+
+      <details>
+        <summary>Where is my data stored? Is it private?</summary>
+        <p>All your students, lessons and payments are stored only on your phone. There is no account and no server, and we never receive your data. Tutiva works fully offline. The internet is used only for the optional Pro subscription. See our <a href="/tutiva/privacy" style="color:var(--teal)">Privacy Policy</a>.</p>
+      </details>
+
+      <details>
+        <summary>How do I restore my Pro purchase?</summary>
+        <p>If you reinstalled the app or moved to a new phone, open Settings, tap the Tutiva Pro banner at the top, then tap "Restore purchases". Your subscription is restored through the store you bought it from: your Apple ID on iPhone or your Google Play account on Android. A subscription bought on one platform can't be moved to the other.</p>
+      </details>
+
+      <details>
+        <summary>How do I cancel my subscription?</summary>
+        <p>Subscriptions are managed by the store. On iPhone: Settings → your name → Subscriptions → Tutiva → Cancel Subscription. On Android: Google Play → Profile → Payments &amp; subscriptions → Subscriptions → Tutiva → Cancel. You keep Pro until the end of the current billing period. Deleting the app does not cancel your subscription.</p>
+      </details>
+
+      <details>
+        <summary>How do I back up my data?</summary>
+        <p>Go to Settings → Backup → Create backup file. Your phone's share menu opens, so you can save the file to your cloud drive, send it to yourself or keep it on your device. Settings shows the date of your last backup, and Tutiva can remind you when it's been a month.</p>
+        <p>If your phone's own backup is on (iCloud backup on iPhone, Google backup on Android), Tutiva's data may also be included in it.</p>
+      </details>
+
+      <details>
+        <summary>How do I move Tutiva to a new phone?</summary>
+        <p>On your old phone, create a backup file (Settings → Backup → Create backup file) and save it somewhere you can reach from the new phone, such as your cloud drive or email. On the new phone, install Tutiva, then go to Settings → Backup → Restore from backup and choose the file. Restoring replaces the data on the new phone with the data in the file.</p>
+      </details>
+
+      <details>
+        <summary>How do I send a lesson summary to a parent?</summary>
+        <p>Open the lesson, mark it Done, fill in the topic covered, the next topic and homework if you like, and tick "Send summary". Choose WhatsApp or SMS and, if both numbers are saved, whether it goes to the parent or the student. When you tap OK, the message opens ready to send; you press send yourself.</p>
+      </details>
+
+      <details>
+        <summary>How do I remind a parent about a payment?</summary>
+        <p>Open the student, go to the Payments tab and tap "Remind" on the balance card. Tutiva writes a short, polite message with the amount and the lesson dates, and opens WhatsApp or your SMS app with it.</p>
+      </details>
+
+      <details>
+        <summary>How do I create a progress report?</summary>
+        <p>Open the student, go to the Progress tab and tap "Progress report". Choose the subjects and the period, then share the PDF with your phone's share menu. The report includes lessons, topics covered and homework. It does not include payments or your private lesson notes.</p>
+      </details>
+
+      <details>
+        <summary>I'm not getting lesson reminders.</summary>
+        <p>Check Settings → Lesson reminder in Tutiva, then make sure notifications for Tutiva are allowed in your phone's settings. On Android, battery saving or "do not disturb" can also delay or hide notifications.</p>
+      </details>
+
+      <details>
+        <summary>How do I change the language?</summary>
+        <p>Tutiva starts in your phone's language if it's one of its 9 languages, otherwise in English. You can change it anytime in Settings → Language. Languages: English, Turkish, Spanish, French, Italian, German, Polish, Portuguese (Brazil) and Romanian.</p>
+      </details>
+
+      <details>
+        <summary>What does "Delete all data" remove?</summary>
+        <p>All students, lessons, payments, holidays and settings on your phone. Tutiva offers to create a backup first and asks you twice before deleting. This can't be undone without a backup file. See <a href="#delete-data" style="color:var(--teal)">Deleting your data</a> below for what remains.</p>
+      </details>
+    </div>
+
+    <!-- DELETE DATA -->
+    <div class="delete-card" id="delete-data">
+      <div class="doc-label">Your Data</div>
+      <div class="delete-title">Deleting your data</div>
+      <p class="delete-sub">Tutiva has no accounts and no server. Your lesson and student data exists only on your phone, so you delete it yourself.</p>
+
+      <h3>Delete in the app</h3>
+      <ul>
+        <li>Everything: Settings → Delete all data.</li>
+        <li>One student: Student → Info → Delete. Their contact details and future lessons are removed; past lessons and payments stay in your records with the student's name.</li>
+        <li>You can also clear the app's storage in your phone's settings or uninstall the app.</li>
+      </ul>
+
+      <h3>What is deleted</h3>
+      <ul>
+        <li>Students and parent contact details, lesson plans, lessons, topics, homework and notes, fees, payments, holidays and settings.</li>
+      </ul>
+
+      <h3>What remains</h3>
+      <ul>
+        <li>Backup files and PDF reports you created: delete them from wherever you saved them.</li>
+        <li>Your phone's own backup (iCloud or Google), managed in your phone's settings.</li>
+        <li>On iPhone, the date you started using Tutiva, kept in the device Keychain so the free allowance can't be restarted. It contains no personal data.</li>
+        <li>If you subscribed: your purchase record with RevenueCat, linked to an anonymous identifier. You can ask us to delete it using the form below (topic "Delete my data") or at <a href="mailto:support@elolabs.app">support@elolabs.app</a>.</li>
+      </ul>
+
+      <h3>Without the app</h3>
+      <ul>
+        <li>We hold no lesson or student data, so there is nothing to delete on our side except the RevenueCat purchase record above.</li>
+        <li>Deleting data does not cancel a subscription. Cancel it in your App Store or Google Play account.</li>
+      </ul>
+    </div>
+
+    <!-- CONTACT FORM -->
+    <div class="form-card">
+      <div class="form-title">Send us a message</div>
+      <p class="form-sub">Can't find your answer above? We're here to help.</p>
+
+      <form id="support-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="d0b15246-1cdf-4ab9-af90-dd48ee421998" />
+        <input type="hidden" name="subject" value="Tutiva User Support" />
+        <input type="hidden" name="from_name" value="Tutiva Support Form" />
+        <input type="hidden" name="redirect" value="false" />
+        <div class="field">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+        </div>
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic">
+            <option value="bug">Bug Report</option>
+            <option value="billing">Billing / Subscription</option>
+            <option value="feature">Feature Request</option>
+            <option value="delete">Delete my data</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Describe your issue or question..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message →</button>
+      </form>
+
+      <div class="success-msg" id="success-msg">
+        ✅ Message sent! We'll get back to you within 1–2 business days.
+      </div>
+
+      <p class="direct-email">
+        Or email us directly at <a id="support-email-link" href="#">support@elolabs.app</a>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 EloLabs</span>
+    <a href="/tutiva/privacy">Privacy Policy</a>
+  </footer>
+
+  <script>
+    const u = 'support'; const d = 'elolabs.app';
+    const el = document.getElementById('support-email-link');
+    if (el) { el.href = 'mailto:' + u + '@' + d; el.textContent = u + '@' + d; }
+
+    const form = document.getElementById('support-form');
+    const successMsg = document.getElementById('success-msg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector('.submit-btn');
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      const data = new FormData(form);
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+        const json = await res.json();
+        if (json.success) {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        } else {
+          submitBtn.textContent = 'Send Message →';
+          submitBtn.disabled = false;
+          alert('Something went wrong. Please email us directly at support@elolabs.app');
+        }
+      } catch {
+        submitBtn.textContent = 'Send Message →';
+        submitBtn.disabled = false;
+        alert('Something went wrong. Please email us directly at support@elolabs.app');
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutiva — Private Lesson Tracker</title>
+  <meta name="description" content="Tutiva is the lesson book for private tutors and teachers — schedule, attendance, topics, homework and payments. No account, no server: your data stays on your phone." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0D1117; --ink2: #3A4251; --muted: #6B7484;
+      --border: #E8ECF2; --bg: #F7F9FC; --white: #FFFFFF;
+      --teal: #1E6B66; --teal2: #165450; --accent: #EAF2F1; --accent-b: #B9D6D3;
+      --dark: #14151B; --dark2: #1F2227;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 68px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-back { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-back:hover { color: var(--teal); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-mark { width: 34px; height: 34px; border-radius: 9px; overflow: hidden; background: var(--accent); }
+    .nav-logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-logo-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; color: var(--ink); }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--ink2); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta { background: var(--teal); color: #fff !important; padding: 9px 18px; border-radius: 10px; }
+    .nav-cta:hover { background: var(--teal2) !important; }
+
+    .hero {
+      min-height: 92vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 120px 5vw 60px; position: relative; overflow: hidden;
+    }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, #d7ebe8 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 90% 80%, #fef3c7 0%, transparent 50%); }
+    .hero-grid { position: absolute; inset: 0; z-index: 0; opacity: 0.04; background-image: linear-gradient(var(--ink) 1px, transparent 1px), linear-gradient(90deg, var(--ink) 1px, transparent 1px); background-size: 40px 40px; }
+    .hero-content { position: relative; z-index: 1; text-align: center; max-width: 780px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); border: 1px solid var(--accent-b); border-radius: 100px; padding: 6px 16px; font-size: 13px; font-weight: 500; color: var(--teal2); margin-bottom: 28px; }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+    h1 { font-family: 'Syne', sans-serif; font-size: clamp(38px, 6vw, 68px); font-weight: 800; line-height: 1.08; letter-spacing: -2px; color: var(--ink); margin-bottom: 24px; }
+    h1 em { font-style: italic; color: var(--teal); }
+    .hero-sub { font-size: 17px; color: var(--ink2); line-height: 1.7; max-width: 580px; margin: 0 auto 36px; }
+    .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--teal); color: #fff; padding: 14px 28px; border-radius: 12px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all .2s; box-shadow: 0 4px 20px rgba(30,107,102,.28); }
+    .btn-primary:hover { background: var(--teal2); transform: translateY(-2px); }
+    .btn-secondary { display: inline-flex; align-items: center; padding: 14px 28px; border-radius: 12px; font-size: 15px; font-weight: 500; color: var(--ink2); text-decoration: none; border: 1px solid var(--border); background: var(--white); transition: all .2s; }
+    .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+    .btn-soon { pointer-events: none; opacity: .6; box-shadow: none; }
+
+    /* Screenshot frames: gray until the image file exists */
+    .shot { position: relative; background: #E9EDF1; overflow: hidden; aspect-ratio: 1170 / 2532; }
+    .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-shot { position: relative; z-index: 1; max-width: 280px; width: 60vw; border-radius: 28px; box-shadow: 0 30px 70px rgba(0,0,0,.18); border: 8px solid var(--dark); }
+
+    .privacy-strip { background: var(--dark); color: #E2E8F0; padding: 28px 5vw; }
+    .privacy-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .privacy-item { display: flex; gap: 12px; align-items: flex-start; }
+    .privacy-item b { display: block; font-family: 'Syne', sans-serif; font-size: 15px; color: #fff; margin-bottom: 2px; }
+    .privacy-item span { font-size: 13.5px; color: #A9B4C2; line-height: 1.5; }
+    .privacy-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: #2EC4B6; margin-top: 6px; }
+
+    .features { padding: 90px 5vw; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; text-align: center; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -1px; color: var(--ink); margin-bottom: 56px; text-align: center; }
+
+    .feature-row { display: flex; align-items: center; gap: 56px; margin-bottom: 100px; }
+    .feature-row:last-child { margin-bottom: 0; }
+    .feature-row.reverse { flex-direction: row-reverse; }
+    .feature-text { flex: 1; min-width: 260px; }
+    .feature-shot { flex: 1; min-width: 220px; display: flex; justify-content: center; }
+    .feature-shot .shot { width: 240px; max-width: 100%; border-radius: 22px; box-shadow: 0 20px 50px rgba(0,0,0,.12); border: 6px solid var(--dark); }
+    .feature-icon { font-size: 30px; display: block; margin-bottom: 16px; }
+    .feature-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 12px; }
+    .feature-desc { font-size: 15px; color: var(--ink2); line-height: 1.75; margin-bottom: 18px; }
+    .feature-list { list-style: none; }
+    .feature-list li { font-size: 14px; color: var(--ink2); padding-left: 24px; position: relative; margin-bottom: 10px; }
+    .feature-list li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+
+    @media (max-width: 780px) {
+      .feature-row, .feature-row.reverse { flex-direction: column; text-align: center; gap: 36px; }
+      .feature-list li { text-align: left; }
+    }
+
+    .subjects { padding: 70px 5vw; background: var(--bg); text-align: center; }
+    .subject-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 760px; margin: 0 auto; }
+    .subject-pill { font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 100px; background: var(--white); color: var(--ink2); border: 1px solid var(--border); }
+
+    .pricing { padding: 90px 5vw; }
+    .pricing-inner { max-width: 900px; margin: 0 auto; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+    .price-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; }
+    .price-card.featured { border: 2px solid var(--teal); position: relative; }
+    .price-badge { position: absolute; top: -12px; right: 24px; background: var(--teal); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 100px; }
+    .price-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .price-desc { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+    .price-amount { font-family: 'Syne', sans-serif; font-size: 34px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+    .price-amount span { font-size: 14px; font-weight: 500; color: var(--muted); }
+    .price-list { list-style: none; margin: 20px 0 0; }
+    .price-list li { font-size: 13.5px; color: var(--ink2); padding-left: 22px; position: relative; margin-bottom: 9px; line-height: 1.5; }
+    .price-list li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+    .price-note { text-align: center; font-size: 13px; color: var(--muted); margin-top: 24px; line-height: 1.6; }
+
+    .langs { padding: 70px 5vw; background: var(--bg); text-align: center; }
+    .lang-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 700px; margin: 0 auto; }
+    .lang-pill { font-size: 13px; font-weight: 500; padding: 7px 14px; border-radius: 100px; background: var(--white); color: var(--ink2); border: 1px solid var(--border); }
+
+    .final-cta { padding: 100px 5vw; position: relative; overflow: hidden; text-align: center; }
+    .final-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #14151B 0%, #1F2A2A 100%); }
+    .final-content { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .final-content .section-label { color: #7FD3CA; }
+    .final-content h2 { font-family: 'Syne', sans-serif; font-size: clamp(26px, 4vw, 38px); font-weight: 800; color: #fff; margin-bottom: 20px; letter-spacing: -1px; }
+    .final-content p { font-size: 15px; color: #A9B4C2; line-height: 1.7; margin-bottom: 32px; }
+    .final-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    footer { padding: 32px 5vw; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    footer span, footer a, .footer-left { font-size: 13px; color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--teal); }
+
+    @media (max-width: 640px) { .nav-links { display: none; } footer { flex-direction: column; text-align: center; } .footer-links { justify-content: center; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-back">← EloLabs</a>
+    <div class="nav-logo">
+      <div class="nav-logo-mark"><img src="/tutiva/screens/icon.png" alt="Tutiva" /></div>
+      <span class="nav-logo-text">Tutiva</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="/tutiva/support">Support</a></li>
+      <li><a href="#download" class="nav-cta">Download</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><div class="hero-badge-dot"></div>Made for private tutors and teachers</div>
+      <h1>Your lessons, students<br /><em>and payments. Sorted.</em></h1>
+      <p class="hero-sub">Tutiva is the lesson book for anyone who teaches: school subjects, languages, music, dance, art, chess or driving. Plan lessons, mark attendance, track topics and homework, and always know who still owes you. No account. No server. Your data stays on your phone.</p>
+      <div class="hero-cta">
+        <a href="#" class="btn-primary" data-store="ios">Download on the App Store →</a>
+        <a href="#" class="btn-secondary" data-store="android">Get it on Google Play →</a>
+        <a href="#features" class="btn-secondary">See how it works</a>
+      </div>
+    </div>
+    <div class="hero-shot shot">
+      <img src="/tutiva/screens/screen-agenda.png" alt="Tutiva agenda screen" onerror="this.remove()" />
+    </div>
+  </section>
+
+  <section class="privacy-strip">
+    <div class="privacy-inner">
+      <div class="privacy-item"><div class="privacy-dot"></div><div><b>No account</b><span>Open the app and start. No sign-up, no login, no email.</span></div></div>
+      <div class="privacy-item"><div class="privacy-dot"></div><div><b>On your phone only</b><span>Students, lessons and payments are stored on your device. We never receive them.</span></div></div>
+      <div class="privacy-item"><div class="privacy-dot"></div><div><b>Works offline</b><span>No internet needed to use Tutiva, in class or on the road.</span></div></div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="section-label">What You Get</div>
+    <div class="section-title">Everything a tutor tracks. In one place.</div>
+
+    <div class="feature-row">
+      <div class="feature-text">
+        <span class="feature-icon">📅</span>
+        <div class="feature-title">An agenda that fills itself</div>
+        <p class="feature-desc">Set a student's plan once, every Tuesday at 17:00 for example, and Tutiva puts every lesson on your agenda. Mark each lesson with one tap when it's done.</p>
+        <ul class="feature-list">
+          <li>Weekly, every two weeks, monthly or one-off lessons</li>
+          <li>Done, cancelled, no-show or moved, all in one tap</li>
+          <li>Day strip and month calendar showing how busy each day is</li>
+          <li>Holidays marked on the calendar</li>
+          <li>Lesson reminders before each lesson</li>
+        </ul>
+      </div>
+      <div class="feature-shot">
+        <div class="shot"><img src="/tutiva/screens/screen-lesson.png" alt="Tutiva lesson screen" onerror="this.remove()" /></div>
+      </div>
+    </div>
+
+    <div class="feature-row reverse">
+      <div class="feature-text">
+        <span class="feature-icon">📈</span>
+        <div class="feature-title">See every student's progress</div>
+        <p class="feature-desc">Keep a topic list for each subject, note what you covered and what comes next, and give homework. Tutiva shows how far each student has come.</p>
+        <ul class="feature-list">
+          <li>Topics covered and the next topic, lesson by lesson</li>
+          <li>Homework with done, partial or not done</li>
+          <li>Progress report as a PDF to share with parents</li>
+        </ul>
+      </div>
+      <div class="feature-shot">
+        <div class="shot"><img src="/tutiva/screens/screen-progress.png" alt="Tutiva progress screen" onerror="this.remove()" /></div>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-text">
+        <span class="feature-icon">💳</span>
+        <div class="feature-title">Know who still owes you</div>
+        <p class="feature-desc">Charge per lesson, sell lesson packages, bill monthly or teach for free. Record payments, including partial ones and advances, and see your balance at a glance.</p>
+        <ul class="feature-list">
+          <li>Per lesson, packages, monthly fee or free</li>
+          <li>Partial payments and advances settle automatically</li>
+          <li>Pending amounts per student, totals by week, month and year</li>
+          <li>Hide amounts with one tap when others can see your screen</li>
+        </ul>
+      </div>
+      <div class="feature-shot">
+        <div class="shot"><img src="/tutiva/screens/screen-payments.png" alt="Tutiva payments screen" onerror="this.remove()" /></div>
+      </div>
+    </div>
+
+    <div class="feature-row reverse">
+      <div class="feature-text">
+        <span class="feature-icon">💬</span>
+        <div class="feature-title">Keep parents in the loop</div>
+        <p class="feature-desc">After a lesson, send a short summary to the parent or student: the topic covered, the next topic and the homework. Payment reminders are just as quick. Tutiva opens WhatsApp or your SMS app with the message ready; you press send.</p>
+        <ul class="feature-list">
+          <li>Lesson summary by WhatsApp or SMS</li>
+          <li>Polite payment reminders with the lesson dates</li>
+          <li>Nothing is sent without you</li>
+        </ul>
+      </div>
+      <div class="feature-shot">
+        <div class="shot"><img src="/tutiva/screens/screen-message.png" alt="Lesson summary message" onerror="this.remove()" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="subjects">
+    <div class="section-label">For Everyone Who Teaches</div>
+    <div class="section-title" style="margin-bottom:32px;">Whatever you teach.</div>
+    <div class="subject-pills">
+      <span class="subject-pill">School subjects</span><span class="subject-pill">Exam prep</span><span class="subject-pill">Languages</span>
+      <span class="subject-pill">Piano</span><span class="subject-pill">Guitar</span><span class="subject-pill">Voice</span>
+      <span class="subject-pill">Dance</span><span class="subject-pill">Art</span><span class="subject-pill">Chess</span>
+      <span class="subject-pill">Coding</span><span class="subject-pill">Driving</span><span class="subject-pill">Your own subject</span>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="pricing-inner">
+      <div class="section-label">Pricing</div>
+      <div class="section-title">Use it free. Upgrade when it's part of your week.</div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-name">Free</div>
+          <div class="price-desc">Full access, no time limit</div>
+          <div class="price-amount">100 <span>lessons</span></div>
+          <ul class="price-list">
+            <li>Every feature unlocked</li>
+            <li>Unlimited students</li>
+            <li>All 9 languages</li>
+            <li>No credit card required</li>
+            <li>Your data stays on your device</li>
+          </ul>
+        </div>
+        <div class="price-card featured">
+          <div class="price-badge">PRO</div>
+          <div class="price-name">Tutiva Pro</div>
+          <div class="price-desc">For tutors who teach every week</div>
+          <div class="price-amount">Unlimited <span>lessons</span></div>
+          <ul class="price-list">
+            <li>Everything in Free</li>
+            <li>No lesson limit</li>
+            <li>Monthly or yearly billing</li>
+            <li>Cancel anytime in your store account</li>
+          </ul>
+        </div>
+      </div>
+      <p class="price-note">Lessons count once their time has passed. Cancelled lessons don't count.<br />Your data is never locked: you can always view it and create a backup.</p>
+    </div>
+  </section>
+
+  <section class="langs">
+    <div class="section-label">Available Worldwide</div>
+    <div class="section-title" style="margin-bottom:32px;">Speaks your language. 9 of them.</div>
+    <div class="lang-pills">
+      <span class="lang-pill">English</span><span class="lang-pill">Türkçe</span><span class="lang-pill">Español</span>
+      <span class="lang-pill">Français</span><span class="lang-pill">Italiano</span><span class="lang-pill">Deutsch</span>
+      <span class="lang-pill">Polski</span><span class="lang-pill">Português (Brasil)</span><span class="lang-pill">Română</span>
+    </div>
+  </section>
+
+  <section class="final-cta" id="download">
+    <div class="final-bg"></div>
+    <div class="final-content">
+      <div class="section-label">Get Started</div>
+      <h2>Close the notebook. Open Tutiva.</h2>
+      <p>Add your first student and plan in about a minute. No sign-up, no internet needed.</p>
+      <div class="final-buttons">
+        <a href="#" class="btn-primary" data-store="ios">Download on the App Store →</a>
+        <a href="#" class="btn-secondary" data-store="android">Get it on Google Play →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© 2026 EloLabs. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="/tutiva/support">Support</a></li>
+      <li><a href="/tutiva/privacy">Privacy Policy</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // Fill these in when the store listings are live. Empty = "coming soon".
+    const PLAY_STORE_URL = '';
+    const APP_STORE_URL  = '';
+    const setStore = (sel, url, label) => {
+      document.querySelectorAll(sel).forEach(el => {
+        if (url) { el.href = url; }
+        else { el.removeAttribute('href'); el.classList.add('btn-soon'); el.textContent = label + ' — coming soon'; }
+      });
+    };
+    setStore('[data-store="ios"]', APP_STORE_URL, 'App Store');
+    setStore('[data-store="android"]', PLAY_STORE_URL, 'Google Play');
+  </script>
+
+</body>
+</html>
